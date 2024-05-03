@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
 
 function SideBar() {
   return (
@@ -10,13 +12,10 @@ function SideBar() {
     >
       {/* Sidebar - Brand */}
       <a
-        className="sidebar-brand d-flex align-items-center justify-content-center"
+        className=" d-flex align-items-center justify-content-center"
         href="index.html"
       >
-        <div className="sidebar-brand-icon rotate-n-15">
-          <i className="fas fa-laugh-wink"></i>
-        </div>
-        <div className="sidebar-brand-text mx-3">QuickAudit</div>
+        <Image src={logo} width={100} height={100} alt="logo" />
       </a>
 
       {/* Nav Item - Dashboard */}

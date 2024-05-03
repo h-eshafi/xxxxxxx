@@ -1,6 +1,12 @@
 import React from "react";
 
-function Navigation({setPreviousStep,setCurrentStep, currentStep, steps, trigger }) {
+function Navigation({
+  setPreviousStep,
+  setCurrentStep,
+  currentStep,
+  steps,
+  trigger,
+}) {
   const next = async () => {
     const fields = steps[currentStep].fields;
     const output = await trigger(fields, { shouldFocus: true });
@@ -8,7 +14,7 @@ function Navigation({setPreviousStep,setCurrentStep, currentStep, steps, trigger
     if (!output) return;
 
     if (currentStep < steps.length - 1) {
-      if (currentStep === steps.length - 2) {
+      if (currentStep === steps.length - 1) {
         await handleSubmit(processForm)();
       }
       setPreviousStep((step) => step + 1);

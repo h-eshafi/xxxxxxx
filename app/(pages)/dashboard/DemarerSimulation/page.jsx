@@ -27,7 +27,6 @@ const steps = [
     name: "Mon foyer",
     fields: ["country", "state", "city", "street", "zip"],
   },
-  { id: "Step 5", name: "Complete" },
 ];
 const FormeDuLogement = [
   { text: "Carré", img: carre },
@@ -131,7 +130,7 @@ function DemarerSimulation() {
                       id="CodeDepartement"
                       {...register("CodeDepartement")}
                       autoComplete="country-name"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className=" bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       {[...Array(99).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
@@ -158,7 +157,7 @@ function DemarerSimulation() {
                     <select
                       id="AnneConstruction"
                       {...register("AnneConstruction")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
                         choose one item
@@ -818,33 +817,605 @@ function DemarerSimulation() {
 
         {currentStep === 2 && (
           <>
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Complete
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Thank you for your submission.
-            </p>
+            <motion.div
+              initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <h1 className="text-base font-semibold leading-7 text-gray-900">
+                Enveloppe thermique
+              </h1>
+              {/* Murs */}
+              <div className="gap-x-6 gap-y-8">
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Murs
+                </h2>
+                <div className="flex flex-col sm:flex-row px-[1rem] justify-between">
+                  <div className="sm:col-span-3 w-full">
+                    <label
+                      htmlFor="Vos murs sont-ils isolés ?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Vos murs sont-ils isolés ?
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        id="Vos murs sont-ils isolés ?"
+                        {...register("Vos murs sont-ils isolés ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.mursEsole?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.mursEsole.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {watch("Vos murs sont-ils isolés ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full">
+                      <label
+                        htmlFor="Année Isolation murs"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation murs"
+                          {...register("Année Isolation murs")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationMurs?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationMurs.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher bas */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Plancher bas
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Type de plancher bas"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Type de plancher bas{" "}
+                      </label>
+                      <select
+                        id="Type de plancher bas"
+                        {...register("Type de plancher bas")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>sur vide sanitaire ou sous-sol</option>
+                        <option>sur terre-plein</option>
+                      </select>
+                      {errors.TypeDeBlancherBas?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.TypeDeBlancherBas.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Plancher bas isolé ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Plancher bas isolé ?{" "}
+                      </label>
+                      <select
+                        id="Plancher bas isolé ?"
+                        {...register("Plancher bas isolé ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.PlancherBasIsole?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.PlancherBasIsole.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {watch("Plancher bas isolé ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full mt-4">
+                      <label
+                        htmlFor="Année Isolation Plancher bas"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation Plancher bas"
+                          {...register("Année Isolation Plancher bas")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationPlancherBasIsole?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationPlancherBasIsole.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher Haut */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Plancher haut
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Nature plancher haut"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Nature plancher haut
+                      </label>
+                      <select
+                        id="Nature plancher haut"
+                        {...register("Nature plancher haut")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Combles perdus (combles)</option>
+                        <option>Combles aménagés (combles)</option>
+                        <option>Toiture terrasse</option>
+                      </select>
+                      {errors.NaturePlancherHaut?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.NaturePlancherHaut.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Plancher haut isolé ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Plancher haut isolé ?
+                      </label>
+                      <select
+                        id="Plancher haut isolé ?"
+                        {...register("Plancher haut isolé ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.PlancherHautIsolé?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.PlancherHautIsolé.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {watch("Plancher haut isolé ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full mt-4">
+                      <label
+                        htmlFor="Année Isolation Plancher Haut"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation Plancher Haut"
+                          {...register("Année Isolation Plancher Haut")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationPlancherHaut?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationPlancherHaut.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher Haut */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Vitrage
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Type de vitrage principal ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Type de vitrage principal ?
+                      </label>
+                      <select
+                        id="Type de vitrage principal ?"
+                        {...register("Type de vitrage principal ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Simple vitrage</option>
+                        <option>Double vitrage ancien</option>
+                        <option>Double vitrage récent</option>
+                        <option>Triple vitrage</option>
+                      </select>
+                      {errors.TypeDeVitragePrincipal?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.NaturePlancherHaut.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </>
         )}
+
         {currentStep === 3 && (
           <>
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Complete
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Thank you for your submission.
-            </p>
-          </>
-        )}
-        {currentStep === 4 && (
-          <>
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Complete
-            </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Thank you for your submission.
-            </p>
-            <button type="submit">submit</button>
+            <motion.div
+              initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <h1 className="text-base font-semibold leading-7 text-gray-900">
+                Enveloppe thermique
+              </h1>
+              {/* Murs */}
+              <div className="gap-x-6 gap-y-8">
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Murs
+                </h2>
+                <div className="flex flex-col sm:flex-row px-[1rem] justify-between">
+                  <div className="sm:col-span-3 w-full">
+                    <label
+                      htmlFor="Vos murs sont-ils isolés ?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Vos murs sont-ils isolés ?
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        id="Vos murs sont-ils isolés ?"
+                        {...register("Vos murs sont-ils isolés ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.mursEsole?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.mursEsole.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {watch("Vos murs sont-ils isolés ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full">
+                      <label
+                        htmlFor="Année Isolation murs"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation murs"
+                          {...register("Année Isolation murs")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationMurs?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationMurs.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher bas */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Plancher bas
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Type de plancher bas"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Type de plancher bas{" "}
+                      </label>
+                      <select
+                        id="Type de plancher bas"
+                        {...register("Type de plancher bas")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>sur vide sanitaire ou sous-sol</option>
+                        <option>sur terre-plein</option>
+                      </select>
+                      {errors.TypeDeBlancherBas?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.TypeDeBlancherBas.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Plancher bas isolé ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Plancher bas isolé ?{" "}
+                      </label>
+                      <select
+                        id="Plancher bas isolé ?"
+                        {...register("Plancher bas isolé ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.PlancherBasIsole?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.PlancherBasIsole.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {watch("Plancher bas isolé ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full mt-4">
+                      <label
+                        htmlFor="Année Isolation Plancher bas"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation Plancher bas"
+                          {...register("Année Isolation Plancher bas")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationPlancherBasIsole?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationPlancherBasIsole.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher Haut */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Plancher haut
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Nature plancher haut"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Nature plancher haut
+                      </label>
+                      <select
+                        id="Nature plancher haut"
+                        {...register("Nature plancher haut")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Combles perdus (combles)</option>
+                        <option>Combles aménagés (combles)</option>
+                        <option>Toiture terrasse</option>
+                      </select>
+                      {errors.NaturePlancherHaut?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.NaturePlancherHaut.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Plancher haut isolé ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Plancher haut isolé ?
+                      </label>
+                      <select
+                        id="Plancher haut isolé ?"
+                        {...register("Plancher haut isolé ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          ..
+                        </option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                      </select>
+                      {errors.PlancherHautIsolé?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.PlancherHautIsolé.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {watch("Plancher haut isolé ?") === "Oui" && (
+                    <div className="sm:col-span-3 w-full mt-4">
+                      <label
+                        htmlFor="Année Isolation Plancher Haut"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Année d&apos;isolation
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Année Isolation Plancher Haut"
+                          {...register("Année Isolation Plancher Haut")}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Choisissez
+                          </option>
+                          <option>Avant 1975</option>
+                          <option>de 1975 à 1977</option>
+                          <option>de 1978 à 1982</option>
+                          <option>de 1983 à 1988</option>
+                          <option>de 1989 à 2000</option>
+                          <option>de 2001 à 2005</option>
+                          <option>de 2005 à 2012</option>
+                          <option>à partir de 2012</option>
+                        </select>
+                        {errors.AnnéeIsolationPlancherHaut?.message && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors.AnnéeIsolationPlancherHaut.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* plancher Haut */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Vitrage
+                </h2>
+                <div className="col-span-full px-[1rem]">
+                  <div className="flex">
+                    <div className="mt-2 w-full">
+                      <label
+                        htmlFor="Type de vitrage principal ?"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Type de vitrage principal ?
+                      </label>
+                      <select
+                        id="Type de vitrage principal ?"
+                        {...register("Type de vitrage principal ?")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Simple vitrage</option>
+                        <option>Double vitrage ancien</option>
+                        <option>Double vitrage récent</option>
+                        <option>Triple vitrage</option>
+                      </select>
+                      {errors.TypeDeVitragePrincipal?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.NaturePlancherHaut.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </>
         )}
       </form>
