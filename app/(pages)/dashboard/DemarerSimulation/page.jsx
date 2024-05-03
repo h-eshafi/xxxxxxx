@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import Nav from "../../module/dashboard/DernierSimulation/Nav";
+import Nav from "../../../component/dashboard/Dernier Simulation/Nav";
+import carre from "@/public/icons/dernierSimulation/Forme du logementCarré-01.png";
+import Navigation from "@/app/component/dashboard/Dernier Simulation/Navigation";
 
 const steps = [
   {
@@ -27,46 +29,77 @@ const steps = [
   },
   { id: "Step 5", name: "Complete" },
 ];
+const FormeDuLogement = [
+  { text: "Carré", img: carre },
+  { text: "Rectangulaire", img: carre },
+  { text: "Forme en L", img: carre },
+  { text: "Forme en U", img: carre },
+];
+const Mitoyenneté = [
+  { text: "Mitoyenne sur 2 côtés", img: carre },
+  { text: "mitoyenne sur un côté", img: carre },
+  { text: "Indépendante  (4 façades)", img: carre },
+];
+const NombreDeNiveauxHabitables = [
+  { text: "1 niveau (rez)", img: carre },
+  { text: "2 niveaux (rez+1)", img: carre },
+  { text: "3 niveaux ou + (rez+2 ou plus)", img: carre },
+];
 
 function DemarerSimulation() {
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const delta = currentStep - previousStep;
 
+  // State button variables to useform
+  const [selectedButton, setSelectedButton] = useState(null);
+  const handleButtonClick = (buttonId) => {
+    setSelectedButton(buttonId);
+    setValue("Forme du logement", buttonId);
+  };
+
+  // State variables for Mitoyenneté
+  const [selectedMitoyennete, setSelectedMitoyennete] = useState(null);
+  const handleButtonMitoyennete = (buttonId) => {
+    setSelectedMitoyennete(buttonId);
+    setValue("Mitoyenneté de la maison", buttonId);
+  };
+  // State variables for NombreDeNiveauxHabitables
+  const [
+    SelectedNombreDeNiveauxHabitables,
+    setSelectedNombreDeNiveauxHabitables,
+  ] = useState(null);
+
+  const handleButtonNombreDeNiveauxHabitables = (buttonId) => {
+    setSelectedNombreDeNiveauxHabitables(buttonId);
+    setValue("Nombre de niveaux habitables", buttonId);
+  };
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     trigger,
     watch,
     formState: { errors },
   } = useForm();
 
   const processForm = (data) => {
+    if (data["Vos murs sont-ils isolés ?"] === "Non") {
+      // Exclude "Année Isolation Plancher bas" from the data object
+      const { ["Année Isolation murs"]: _, ...filteredData } = data;
+      data = filteredData;
+    }
+    if (data["Plancher bas isolé ?"] === "Non") {
+      const { ["Année Isolation Plancher bas"]: _, ...filteredData } = data;
+      data = filteredData;
+    }
+    if (data["Plancher haut isolé ?"] === "Non") {
+      const { ["Année Isolation Plancher Haut"]: _, ...filteredData } = data;
+      data = filteredData;
+    }
     console.log(data);
-    reset();
-  };
-
-  const next = async () => {
-    const fields = steps[currentStep].fields;
-    const output = await trigger(fields, { shouldFocus: true });
-
-    if (!output) return;
-
-    if (currentStep < steps.length - 1) {
-      if (currentStep === steps.length - 2) {
-        await handleSubmit(processForm)();
-      }
-      setPreviousStep((step) => step + 1);
-      setCurrentStep((step) => step + 1);
-    }
-  };
-
-  const prev = () => {
-    if (currentStep > 0) {
-      setPreviousStep((step) => step - 1);
-      setCurrentStep((step) => step - 1);
-    }
+    // reset();
   };
 
   return (
@@ -82,174 +115,401 @@ function DemarerSimulation() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h1 className="text-base font-semibold leading-7 text-gray-900">
-              données générales{" "}
+              Données générales{" "}
             </h1>
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
-              <div className=" ">
-                <label
-                  htmlFor="CodeDepartement"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Code du département
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="CodeDepartement"
-                    {...register("CodeDepartement")}
-                    autoComplete="country-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+            <div className="mt-10 gap-x-6 gap-y-8  ">
+              <div className="flex flex-row sm:flex-col ">
+                <div className=" w-full">
+                  <label
+                    htmlFor="CodeDepartement"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    {[...Array(99).keys()].map((num) => (
-                      <option key={num + 1} value={num + 1}>
-                        {num + 1}
+                    Code du département
+                  </label>
+                  <div className="mt-2">
+                    <select
+                      id="CodeDepartement"
+                      {...register("CodeDepartement")}
+                      autoComplete="country-name"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      {[...Array(99).keys()].map((num) => (
+                        <option key={num + 1} value={num + 1}>
+                          {num + 1}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.CodeDepartement?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.CodeDepartement.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="w-full ">
+                  <label
+                    htmlFor="AnneConstruction"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Année de construction du logement
+                  </label>
+                  <div className="mt-2">
+                    <select
+                      id="AnneConstruction"
+                      {...register("AnneConstruction")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        choose one item
                       </option>
-                    ))}
-                  </select>
-                  {errors.CodeDepartement?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.CodeDepartement.message}
-                    </p>
-                  )}
+                      <option>Avant 1975</option>
+                      <option>de 1975 à 1977</option>
+                      <option>de 1978 à 1982</option>
+                      <option>de 1983 à 1988</option>
+                      <option>de 1989 à 2000</option>
+                      <option>de 2001 à 2005</option>
+                      <option>de 2005 à 2012</option>
+                      <option>à partir de 2012</option>
+                    </select>
+                    {errors.CodeDepartement?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.CodeDepartement.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              <div className=" ">
-                <label
-                  htmlFor="AnneConstruction"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Année de construction du logement
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="AnneConstruction"
-                    {...register("AnneConstruction")}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option disabled selected>
-                      choose one item
-                    </option>
-                    <option>Avant 1975</option>
-                    <option>de 1975 à 1977</option>
-                    <option>de 1978 à 1982</option>
-                    <option>de 1983 à 1988</option>
-                    <option>de 1989 à 2000</option>
-                    <option>de 2001 à 2005</option>
-                    <option>de 2005 à 2012</option>
-                    <option>à partir de 2012</option>
-                  </select>
-                  {errors.CodeDepartement?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.CodeDepartement.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className=" ">
+              <div className="mt-[3rem] ">
                 <label
                   htmlFor="FormeLogement"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Forme du logement
                 </label>
-                <div className="mt-2">
-                  <select
-                    id="FormeLogement"
-                    {...register("FormeLogement")}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option disabled selected>
-                      choose one item
-                    </option>
-                    <option>Carré</option>
-                    <option>Rectangulaire</option>
-                    <option>Forme en L</option>
-                    <option>Forme en U</option>
-                  </select>
-                  {errors.FormeLogement?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.FormeLogement.message}
-                    </p>
-                  )}
-                </div>
+
+                <ul className="flex justify-evenly mt-6">
+                  {FormeDuLogement.map((option, index) => (
+                    <li
+                      key={index}
+                      className={`text-center py-[12px] px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                        selectedButton === option.text
+                          ? "activeGreen"
+                          : "bg-white"
+                      } flex-column justify-evenly items-center rounded-[1rem] boxHover`}
+                      onClick={() => handleButtonClick(option.text)}
+                    >
+                      {/* <Image src={option.img} alt={option.text} width={47} height={47} className="rounded-[20%]" /> */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="59"
+                        viewBox="0 0 51 59"
+                      >
+                        <g
+                          id="Groupe_1794"
+                          data-name="Groupe 1794"
+                          transform="translate(-676 -808)"
+                        >
+                          <g
+                            id="Group_2"
+                            data-name="Group 2"
+                            transform="translate(676 808)"
+                          >
+                            <path
+                              id="Combined_Shape"
+                              data-name="Combined Shape"
+                              d="M0,59V21.2L25.5,0,36.975,9.539V6.713h5.95v7.773L51,21.2V59Z"
+                              transform="translate(0 0)"
+                              fill="#ebeced"
+                            />
+                            <g
+                              id="Path_2"
+                              data-name="Path 2"
+                              transform="translate(3.905 4.628)"
+                              fill="#ebeced"
+                              stroke-miterlimit="10"
+                            >
+                              <path
+                                d="M 42.53225708007812 50.14931488037109 L 0.7499985694885254 50.14931488037109 L 0.7499985694885254 18.07347106933594 L 21.64538383483887 0.9693096280097961 L 42.53225708007812 18.07337951660156 L 42.53225708007812 50.14931488037109 Z"
+                                stroke="none"
+                              />
+                              <path
+                                d="M 21.64528846740723 1.938602447509766 L 1.5 18.42877578735352 L 1.5 49.39930725097656 L 41.78225708007812 49.39930725097656 L 41.78225708007812 18.42859268188477 L 21.64528846740723 1.938602447509766 M 21.64547920227051 -3.814697265625e-06 L 43.28225708007812 17.71816635131836 L 43.28225708007812 50.89930725097656 L 0 50.89930725097656 L 0 17.71816635131836 L 21.64547920227051 -3.814697265625e-06 Z"
+                                stroke="none"
+                                fill="#fff"
+                              />
+                            </g>
+                          </g>
+                          <g
+                            id="Rectangle_257"
+                            data-name="Rectangle 257"
+                            transform="translate(680 831)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="17" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="15.5"
+                              fill="none"
+                            />
+                          </g>
+                          <g
+                            id="Rectangle_259"
+                            data-name="Rectangle 259"
+                            transform="translate(680 844)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="19" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="17.5"
+                              fill="none"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                      <p className="m-0">{option.text}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className=" ">
+              <div className="mt-[3rem] ">
                 <label
-                  htmlFor="Mitoyennete"
+                  htmlFor="FormeLogement"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Mitoyenneté de la maison{" "}
+                  Mitoyenneté de la maison
                 </label>
-                <div className="mt-2">
-                  <select
-                    id="Mitoyennete"
-                    {...register("Mitoyennete")}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option disabled selected>
-                      choose one item
-                    </option>
-                    <option>Mitoyenne sur 2 côtés</option>
-                    <option>mitoyenne sur un côté</option>
-                    <option>Indépendante (4 façades)</option>
-                  </select>
-                  {errors.Mitoyennete?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.Mitoyennete.message}
-                    </p>
-                  )}
-                </div>
+
+                <ul className="flex justify-evenly mt-6">
+                  {Mitoyenneté.map((option, index) => (
+                    <li
+                      key={index}
+                      className={`text-center py-[12px] px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                        selectedMitoyennete === option.text
+                          ? "activeGreen"
+                          : "bg-white"
+                      } flex-column justify-evenly items-center rounded-[1rem] boxHover`}
+                      onClick={() => handleButtonMitoyennete(option.text)}
+                    >
+                      {/* <Image src={option.img} alt={option.text} width={47} height={47} className="rounded-[20%]" /> */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="59"
+                        viewBox="0 0 51 59"
+                      >
+                        <g
+                          id="Groupe_1794"
+                          data-name="Groupe 1794"
+                          transform="translate(-676 -808)"
+                        >
+                          <g
+                            id="Group_2"
+                            data-name="Group 2"
+                            transform="translate(676 808)"
+                          >
+                            <path
+                              id="Combined_Shape"
+                              data-name="Combined Shape"
+                              d="M0,59V21.2L25.5,0,36.975,9.539V6.713h5.95v7.773L51,21.2V59Z"
+                              transform="translate(0 0)"
+                              fill="#ebeced"
+                            />
+                            <g
+                              id="Path_2"
+                              data-name="Path 2"
+                              transform="translate(3.905 4.628)"
+                              fill="#ebeced"
+                              stroke-miterlimit="10"
+                            >
+                              <path
+                                d="M 42.53225708007812 50.14931488037109 L 0.7499985694885254 50.14931488037109 L 0.7499985694885254 18.07347106933594 L 21.64538383483887 0.9693096280097961 L 42.53225708007812 18.07337951660156 L 42.53225708007812 50.14931488037109 Z"
+                                stroke="none"
+                              />
+                              <path
+                                d="M 21.64528846740723 1.938602447509766 L 1.5 18.42877578735352 L 1.5 49.39930725097656 L 41.78225708007812 49.39930725097656 L 41.78225708007812 18.42859268188477 L 21.64528846740723 1.938602447509766 M 21.64547920227051 -3.814697265625e-06 L 43.28225708007812 17.71816635131836 L 43.28225708007812 50.89930725097656 L 0 50.89930725097656 L 0 17.71816635131836 L 21.64547920227051 -3.814697265625e-06 Z"
+                                stroke="none"
+                                fill="#fff"
+                              />
+                            </g>
+                          </g>
+                          <g
+                            id="Rectangle_257"
+                            data-name="Rectangle 257"
+                            transform="translate(680 831)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="17" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="15.5"
+                              fill="none"
+                            />
+                          </g>
+                          <g
+                            id="Rectangle_259"
+                            data-name="Rectangle 259"
+                            transform="translate(680 844)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="19" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="17.5"
+                              fill="none"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                      <p className="m-0">{option.text}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="">
+              <div className="mt-[3rem] ">
                 <label
-                  htmlFor="NiveauxHabitables"
+                  htmlFor="FormeLogement"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Nombre de niveaux habitables
+                  Nombre de niveaux habitables{" "}
                 </label>
-                <div className="mt-2">
-                  <select
-                    id="NiveauxHabitables"
-                    {...register("NiveauxHabitables")}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option disabled selected>
-                      choose one item
-                    </option>
-                    <option>1 niveau (rez)</option>
-                    <option>2 niveaux (rez+1)</option>
-                    <option>3 niveaux ou + (rez+2 ou plus)</option>
-                  </select>
-                  {errors.NiveauxHabitables?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.NiveauxHabitables.message}
-                    </p>
-                  )}
-                </div>
+
+                <ul className="flex justify-evenly mt-6">
+                  {NombreDeNiveauxHabitables.map((option, index) => (
+                    <li
+                      key={index}
+                      className={`py-[12px] text-center px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                        SelectedNombreDeNiveauxHabitables === option.text
+                          ? "activeGreen"
+                          : "bg-white"
+                      } flex-column justify-evenly items-center rounded-[1rem] boxHover`}
+                      onClick={() =>
+                        handleButtonNombreDeNiveauxHabitables(option.text)
+                      }
+                    >
+                      {/* <Image src={option.img} alt={option.text} width={47} height={47} className="rounded-[20%]" /> */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="59"
+                        viewBox="0 0 51 59"
+                      >
+                        <g
+                          id="Groupe_1794"
+                          data-name="Groupe 1794"
+                          transform="translate(-676 -808)"
+                        >
+                          <g
+                            id="Group_2"
+                            data-name="Group 2"
+                            transform="translate(676 808)"
+                          >
+                            <path
+                              id="Combined_Shape"
+                              data-name="Combined Shape"
+                              d="M0,59V21.2L25.5,0,36.975,9.539V6.713h5.95v7.773L51,21.2V59Z"
+                              transform="translate(0 0)"
+                              fill="#ebeced"
+                            />
+                            <g
+                              id="Path_2"
+                              data-name="Path 2"
+                              transform="translate(3.905 4.628)"
+                              fill="#ebeced"
+                              stroke-miterlimit="10"
+                            >
+                              <path
+                                d="M 42.53225708007812 50.14931488037109 L 0.7499985694885254 50.14931488037109 L 0.7499985694885254 18.07347106933594 L 21.64538383483887 0.9693096280097961 L 42.53225708007812 18.07337951660156 L 42.53225708007812 50.14931488037109 Z"
+                                stroke="none"
+                              />
+                              <path
+                                d="M 21.64528846740723 1.938602447509766 L 1.5 18.42877578735352 L 1.5 49.39930725097656 L 41.78225708007812 49.39930725097656 L 41.78225708007812 18.42859268188477 L 21.64528846740723 1.938602447509766 M 21.64547920227051 -3.814697265625e-06 L 43.28225708007812 17.71816635131836 L 43.28225708007812 50.89930725097656 L 0 50.89930725097656 L 0 17.71816635131836 L 21.64547920227051 -3.814697265625e-06 Z"
+                                stroke="none"
+                                fill="#fff"
+                              />
+                            </g>
+                          </g>
+                          <g
+                            id="Rectangle_257"
+                            data-name="Rectangle 257"
+                            transform="translate(680 831)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="17" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="15.5"
+                              fill="none"
+                            />
+                          </g>
+                          <g
+                            id="Rectangle_259"
+                            data-name="Rectangle 259"
+                            transform="translate(680 844)"
+                            fill="#909da2"
+                            stroke="#fff"
+                            stroke-width="1.5"
+                          >
+                            <rect width="43" height="19" stroke="none" />
+                            <rect
+                              x="0.75"
+                              y="0.75"
+                              width="41.5"
+                              height="17.5"
+                              fill="none"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                      <p className="m-0">{option.text}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="">
-                <label
-                  htmlFor="Surface"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Surface habitable{" "}
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    id="Surface"
-                    {...register("Surface")}
-                    className="block w-[320px] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
-                  />
-                  {errors.Surface?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.Surface.message}
-                    </p>
-                  )}
+              <div className="mt-[3rem] ">
+                <div class="flex flex-col gap-6 w-72">
+                  <div class="relative h-11 w-full min-w-[200px]">
+                    <input
+                      type="number"
+                      id="SurfaceHabitable"
+                      {...register("Surface habitable")}
+                      placeholder=" Surface habitable"
+                      class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:mainBlue focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    />
+                    <label
+                      htmlFor="FormeLogement"
+                      class="block text-sm font-medium leading-6 text-black after:content[' '] pointer-events-none absolute left-0  -top-2.5 flex h-full w-full select-none !overflow-visible truncate text-sm font-normal leading-tight transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-mainBlue after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:mainBlue peer-focus:after:scale-x-100 peer-focus:after:border-mainBlue peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+                    >
+                      {" "}
+                      Surface habitable
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -263,26 +523,25 @@ function DemarerSimulation() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h1 className="text-base font-semibold leading-7 text-gray-900">
-              Mitoyenneté de la maison
+              Enveloppe thermique
             </h1>
-
-            <h2 className="text-base font-semibold leading-7 text-gray-700 mt-10">
-              Murs{" "}
-            </h2>
-
-            <div className="mt-6   gap-x-6 gap-y-8  ">
-              <div className="flex flex-col sm:flex-row gap-[2rem] justify-between">
+            {/* Murs */}
+            <div className="gap-x-6 gap-y-8">
+              <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                Murs
+              </h2>
+              <div className="flex flex-col sm:flex-row px-[1rem] justify-between">
                 <div className="sm:col-span-3 w-full">
                   <label
-                    htmlFor="country"
+                    htmlFor="Vos murs sont-ils isolés ?"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     Vos murs sont-ils isolés ?
                   </label>
                   <div className="mt-2">
                     <select
-                      id="murs"
-                      {...register("murs")}
+                      id="Vos murs sont-ils isolés ?"
+                      {...register("Vos murs sont-ils isolés ?")}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
@@ -291,25 +550,25 @@ function DemarerSimulation() {
                       <option>Oui</option>
                       <option>Non</option>
                     </select>
-                    {errors.murs?.message && (
+                    {errors.mursEsole?.message && (
                       <p className="mt-2 text-sm text-red-400">
-                        {errors.murs.message}
+                        {errors.mursEsole.message}
                       </p>
                     )}
                   </div>
                 </div>
-                {watch("murs") === "Oui" && (
+                {watch("Vos murs sont-ils isolés ?") === "Oui" && (
                   <div className="sm:col-span-3 w-full">
                     <label
-                      htmlFor="name"
+                      htmlFor="Année Isolation murs"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
                       Année d&apos;isolation
                     </label>
                     <div className="mt-2">
                       <select
-                        id="name"
-                        {...register("name")}
+                        id="Année Isolation murs"
+                        {...register("Année Isolation murs")}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
@@ -324,43 +583,233 @@ function DemarerSimulation() {
                         <option>de 2005 à 2012</option>
                         <option>à partir de 2012</option>
                       </select>
-                      {errors.name?.message && (
+                      {errors.AnnéeIsolationMurs?.message && (
                         <p className="mt-2 text-sm text-red-400">
-                          {errors.name.message}
+                          {errors.AnnéeIsolationMurs.message}
                         </p>
                       )}
                     </div>
                   </div>
                 )}
               </div>
+
               {/* plancher bas */}
               <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
                 Plancher bas
               </h2>
-              <div className="col-span-full">
-                <label
-                  htmlFor="PlancherBas"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Type de plancher bas{" "}
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="PlancherBas"
-                    {...register("PlancherBas")}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option disabled selected>
-                      Choisissez
-                    </option>
-                    <option>sur vide sanitaire ou sous-sol</option>
-                    <option>sur terre-plein</option>
-                  </select>
-                  {errors.PlancherBas?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.PlancherBas.message}
-                    </p>
-                  )}
+              <div className="col-span-full px-[1rem]">
+                <div className="flex">
+                  <div className="mt-2 w-full">
+                    <label
+                      htmlFor="Type de plancher bas"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Type de plancher bas{" "}
+                    </label>
+                    <select
+                      id="Type de plancher bas"
+                      {...register("Type de plancher bas")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        Choisissez
+                      </option>
+                      <option>sur vide sanitaire ou sous-sol</option>
+                      <option>sur terre-plein</option>
+                    </select>
+                    {errors.TypeDeBlancherBas?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.TypeDeBlancherBas.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mt-2 w-full">
+                    <label
+                      htmlFor="Plancher bas isolé ?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Plancher bas isolé ?{" "}
+                    </label>
+                    <select
+                      id="Plancher bas isolé ?"
+                      {...register("Plancher bas isolé ?")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        ..
+                      </option>
+                      <option>Oui</option>
+                      <option>Non</option>
+                    </select>
+                    {errors.PlancherBasIsole?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.PlancherBasIsole.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {watch("Plancher bas isolé ?") === "Oui" && (
+                  <div className="sm:col-span-3 w-full mt-4">
+                    <label
+                      htmlFor="Année Isolation Plancher bas"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Année d&apos;isolation
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        id="Année Isolation Plancher bas"
+                        {...register("Année Isolation Plancher bas")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Avant 1975</option>
+                        <option>de 1975 à 1977</option>
+                        <option>de 1978 à 1982</option>
+                        <option>de 1983 à 1988</option>
+                        <option>de 1989 à 2000</option>
+                        <option>de 2001 à 2005</option>
+                        <option>de 2005 à 2012</option>
+                        <option>à partir de 2012</option>
+                      </select>
+                      {errors.AnnéeIsolationPlancherBasIsole?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.AnnéeIsolationPlancherBasIsole.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* plancher Haut */}
+              <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                Plancher haut
+              </h2>
+              <div className="col-span-full px-[1rem]">
+                <div className="flex">
+                  <div className="mt-2 w-full">
+                    <label
+                      htmlFor="Nature plancher haut"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Nature plancher haut
+                    </label>
+                    <select
+                      id="Nature plancher haut"
+                      {...register("Nature plancher haut")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        Choisissez
+                      </option>
+                      <option>Combles perdus (combles)</option>
+                      <option>Combles aménagés (combles)</option>
+                      <option>Toiture terrasse</option>
+                    </select>
+                    {errors.NaturePlancherHaut?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.NaturePlancherHaut.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mt-2 w-full">
+                    <label
+                      htmlFor="Plancher haut isolé ?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Plancher haut isolé ?
+                    </label>
+                    <select
+                      id="Plancher haut isolé ?"
+                      {...register("Plancher haut isolé ?")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        ..
+                      </option>
+                      <option>Oui</option>
+                      <option>Non</option>
+                    </select>
+                    {errors.PlancherHautIsolé?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.PlancherHautIsolé.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {watch("Plancher haut isolé ?") === "Oui" && (
+                  <div className="sm:col-span-3 w-full mt-4">
+                    <label
+                      htmlFor="Année Isolation Plancher Haut"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Année d&apos;isolation
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        id="Année Isolation Plancher Haut"
+                        {...register("Année Isolation Plancher Haut")}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option disabled selected>
+                          Choisissez
+                        </option>
+                        <option>Avant 1975</option>
+                        <option>de 1975 à 1977</option>
+                        <option>de 1978 à 1982</option>
+                        <option>de 1983 à 1988</option>
+                        <option>de 1989 à 2000</option>
+                        <option>de 2001 à 2005</option>
+                        <option>de 2005 à 2012</option>
+                        <option>à partir de 2012</option>
+                      </select>
+                      {errors.AnnéeIsolationPlancherHaut?.message && (
+                        <p className="mt-2 text-sm text-red-400">
+                          {errors.AnnéeIsolationPlancherHaut.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* plancher Haut */}
+              <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                Vitrage
+              </h2>
+              <div className="col-span-full px-[1rem]">
+                <div className="flex">
+                  <div className="mt-2 w-full">
+                    <label
+                      htmlFor="Type de vitrage principal ?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Type de vitrage principal ?
+                    </label>
+                    <select
+                      id="Type de vitrage principal ?"
+                      {...register("Type de vitrage principal ?")}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        Choisissez
+                      </option>
+                      <option>Simple vitrage</option>
+                      <option>Double vitrage ancien</option>
+                      <option>Double vitrage récent</option>
+                      <option>Triple vitrage</option>
+                    </select>
+                    {errors.TypeDeVitragePrincipal?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.NaturePlancherHaut.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -401,52 +850,14 @@ function DemarerSimulation() {
       </form>
 
       {/* Navigation */}
-      <div className="">
-        <div className="flex justify-between">
-          <button
-            type="button"
-            onClick={prev}
-            disabled={currentStep === 0}
-            className="rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            disabled={currentStep === steps.length - 1}
-            className="rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <Navigation
+        previousStep={previousStep}
+        setPreviousStep={setPreviousStep}
+        trigger={trigger}
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        steps={steps}
+      />
     </section>
   );
 }

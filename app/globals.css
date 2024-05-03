@@ -11762,3 +11762,18 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+ /* dernier simulation  */
+ .boxHover:hover{
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity)) !important;
+  color: black;
+  transition: 0.4s;
+cursor: pointer; 
+}
+ .boxHover:active{
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity)) !important;
+  
+}
+.activeGreen{
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity)) !important;
+  border: 1px solid #4e8f65 !important;
+}
