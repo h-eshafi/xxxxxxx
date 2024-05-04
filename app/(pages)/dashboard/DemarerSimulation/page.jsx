@@ -19,7 +19,7 @@ const steps = [
   },
   {
     id: "Step 3",
-    name: "systèmes techniques",
+    name: "Systèmes énergétiques",
     fields: ["country", "state", "city", "street", "zip"],
   },
   {
@@ -160,7 +160,7 @@ function DemarerSimulation() {
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        choose one item
+                        Sélectionnez une réponse
                       </option>
                       <option>Avant 1975</option>
                       <option>de 1975 à 1977</option>
@@ -492,7 +492,7 @@ function DemarerSimulation() {
               </div>
 
               <div className="mt-[3rem] ">
-                <div class="flex flex-col gap-6 w-72">
+                <div class="flex flex-col gap-6 w-[40%]">
                   <div class="relative h-11 w-full min-w-[200px]">
                     <input
                       type="number"
@@ -505,7 +505,6 @@ function DemarerSimulation() {
                       htmlFor="FormeLogement"
                       class="block text-sm font-medium leading-6 text-black after:content[' '] pointer-events-none absolute left-0  -top-2.5 flex h-full w-full select-none !overflow-visible truncate text-sm font-normal leading-tight transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-mainBlue after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:mainBlue peer-focus:after:scale-x-100 peer-focus:after:border-mainBlue peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
                     >
-                      {" "}
                       Surface habitable
                     </label>
                   </div>
@@ -522,7 +521,7 @@ function DemarerSimulation() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h1 className="text-base font-semibold leading-7 text-gray-900">
-              Enveloppe thermique
+              Systèmes énergétiques
             </h1>
             {/* Murs */}
             <div className="gap-x-6 gap-y-8">
@@ -541,7 +540,7 @@ function DemarerSimulation() {
                     <select
                       id="Vos murs sont-ils isolés ?"
                       {...register("Vos murs sont-ils isolés ?")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
                         ..
@@ -568,10 +567,10 @@ function DemarerSimulation() {
                       <select
                         id="Année Isolation murs"
                         {...register("Année Isolation murs")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
                         <option>de 1975 à 1977</option>
@@ -608,10 +607,10 @@ function DemarerSimulation() {
                     <select
                       id="Type de plancher bas"
                       {...register("Type de plancher bas")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        Choisissez
+                        Sélectionnez une réponse
                       </option>
                       <option>sur vide sanitaire ou sous-sol</option>
                       <option>sur terre-plein</option>
@@ -632,10 +631,10 @@ function DemarerSimulation() {
                     <select
                       id="Plancher bas isolé ?"
                       {...register("Plancher bas isolé ?")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        ..
+                        Sélectionnez une réponse{" "}
                       </option>
                       <option>Oui</option>
                       <option>Non</option>
@@ -660,10 +659,10 @@ function DemarerSimulation() {
                       <select
                         id="Année Isolation Plancher bas"
                         {...register("Année Isolation Plancher bas")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
                         <option>de 1975 à 1977</option>
@@ -700,10 +699,10 @@ function DemarerSimulation() {
                     <select
                       id="Nature plancher haut"
                       {...register("Nature plancher haut")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        Choisissez
+                        Sélectionnez une réponse
                       </option>
                       <option>Combles perdus (combles)</option>
                       <option>Combles aménagés (combles)</option>
@@ -725,10 +724,10 @@ function DemarerSimulation() {
                     <select
                       id="Plancher haut isolé ?"
                       {...register("Plancher haut isolé ?")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        ..
+                        Sélectionnez une réponse
                       </option>
                       <option>Oui</option>
                       <option>Non</option>
@@ -753,10 +752,10 @@ function DemarerSimulation() {
                       <select
                         id="Année Isolation Plancher Haut"
                         {...register("Année Isolation Plancher Haut")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
                         <option>de 1975 à 1977</option>
@@ -777,7 +776,7 @@ function DemarerSimulation() {
                 )}
               </div>
 
-              {/* plancher Haut */}
+              {/* Vitrage */}
               <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
                 Vitrage
               </h2>
@@ -793,10 +792,10 @@ function DemarerSimulation() {
                     <select
                       id="Type de vitrage principal ?"
                       {...register("Type de vitrage principal ?")}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option disabled selected>
-                        Choisissez
+                        Sélectionnez une réponse
                       </option>
                       <option>Simple vitrage</option>
                       <option>Double vitrage ancien</option>
@@ -825,67 +824,255 @@ function DemarerSimulation() {
               <h1 className="text-base font-semibold leading-7 text-gray-900">
                 Enveloppe thermique
               </h1>
-              {/* Murs */}
+
               <div className="gap-x-6 gap-y-8">
+                {/* Ventilation */}
                 <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
-                  Murs
+                  Ventilation
                 </h2>
-                <div className="flex flex-col sm:flex-row px-[1rem] justify-between">
-                  <div className="sm:col-span-3 w-full">
+                <div className="sm:col-span-3 w-full px-[1rem]">
+                  <label
+                    htmlFor="Vos murs sont ils isoles ?"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Type de ventilation
+                  </label>
+                  <div className="mt-2">
+                    <select
+                      id="Vos murs sont ils isoles ?"
+                      {...register("Vos murs sont ils isoles ?")}
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        ...
+                      </option>
+                      <option>Ventilation par ouverture des fenêtres</option>
+                      <option>
+                        Ventilation mécanique auto-réglable avant 1982
+                      </option>
+                      <option>
+                        Ventilation mécanique auto-réglable après 1982
+                      </option>
+                      <option>
+                        Ventilation mécanique à extraction hygroréglable
+                      </option>
+                      <option>
+                        Ventilation mécanique double flux avec échangeur
+                      </option>
+                      <option>
+                        Ventilation mécanique double flux sans échangeur
+                      </option>
+                    </select>
+                    {errors.mursEsole?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.mursEsole.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Chauffage */}
+                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
+                  Chauffage
+                </h2>
+                <div className="col-span-full px-[1rem] flex ">
+                  <div className=" mt-2 w-full">
                     <label
-                      htmlFor="Vos murs sont-ils isolés ?"
+                      htmlFor="Type Energie de chauffage"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                      Vos murs sont-ils isolés ?
+                      Type d&apos;énergie de chauffage
                     </label>
-                    <div className="mt-2">
-                      <select
-                        id="Vos murs sont-ils isolés ?"
-                        {...register("Vos murs sont-ils isolés ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          ..
-                        </option>
-                        <option>Oui</option>
-                        <option>Non</option>
-                      </select>
-                      {errors.mursEsole?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.mursEsole.message}
-                        </p>
-                      )}
-                    </div>
+                    <select
+                      id="Type Energie de chauffage"
+                      {...register("Type Energie de chauffage")}
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        Sélectionnez une réponse
+                      </option>
+                      <option>Gaz</option>
+                      <option>Fioul</option>
+                      <option>Bois</option>
+                      <option>Electrique</option>
+                      <option>GPL</option>
+                      <option>Solaire</option>
+                    </select>
+                    {errors.NaturePlancherHaut?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.NaturePlancherHaut.message}
+                      </p>
+                    )}
                   </div>
-                  {watch("Vos murs sont-ils isolés ?") === "Oui" && (
-                    <div className="sm:col-span-3 w-full">
+
+                  {watch("Type Energie de chauffage") === "Gaz" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
                       <label
-                        htmlFor="Année Isolation murs"
+                        htmlFor="Systeme de chauffage"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Année d&apos;isolation
+                        Système de chauffage
                       </label>
                       <div className="mt-2">
                         <select
-                          id="Année Isolation murs"
-                          {...register("Année Isolation murs")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
                           <option disabled selected>
-                            Choisissez
+                            Sélectionnez une réponse
                           </option>
-                          <option>Avant 1975</option>
-                          <option>de 1975 à 1977</option>
-                          <option>de 1978 à 1982</option>
-                          <option>de 1983 à 1988</option>
-                          <option>de 1989 à 2000</option>
-                          <option>de 2001 à 2005</option>
-                          <option>de 2005 à 2012</option>
-                          <option>à partir de 2012</option>
+                          <option>Chaudière gaz classique</option>
+                          <option>Chaudière gaz Basse</option>
+                          <option>Température</option>
+                          <option>Chaudière gaz récente à condensation</option>
                         </select>
-                        {errors.AnnéeIsolationMurs?.message && (
+                        {errors && errors["Systeme de chauffage"] && (
                           <p className="mt-2 text-sm text-red-400">
-                            {errors.AnnéeIsolationMurs.message}
+                            {errors["Systeme de chauffage"].message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {watch("Type Energie de chauffage") === "Fioul" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
+                      <label
+                        htmlFor="Systeme de chauffage"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Système de chauffage
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Sélectionnez une réponse
+                          </option>
+                          <option>Chaudière fioul</option>
+                          <option>Poêle fioul</option>
+                        </select>
+                        {errors && errors["Systeme de chauffage"] && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors["Systeme de chauffage"].message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {watch("Type Energie de chauffage") === "Bois" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
+                      <label
+                        htmlFor="Systeme de chauffage"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Système de chauffage
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Sélectionnez une réponse
+                          </option>
+                          <option>Chaudière bois ancienne</option>
+                          <option>Chaudière bois récente</option>
+                          <option>Poêle à granulés</option>
+                        </select>
+                        {errors && errors["Systeme de chauffage"] && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors["Systeme de chauffage"].message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {watch("Type Energie de chauffage") === "Electrique" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
+                      <label
+                        htmlFor="Systeme de chauffage"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Système de chauffage
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Sélectionnez une réponse
+                          </option>
+                          <option>Convecteur électriquee</option>
+                          <option>Panneau rayonnant électrique</option>
+                          <option>PAC air/air</option>
+                          <option>PAC air/eau</option>
+                          <option>PAC eau/eau</option>
+                          <option>PAC Géothermie</option>
+                        </select>
+                        {errors && errors["Systeme de chauffage"] && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors["Systeme de chauffage"].message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {watch("Type Energie de chauffage") === "GPL" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
+                      <label
+                        htmlFor="Systeme de chauffage"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Système de chauffage
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Sélectionnez une réponse
+                          </option>
+                          <option>Poêle GPL</option>
+                        </select>
+                        {errors && errors["Systeme de chauffage"] && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors["Systeme de chauffage"].message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {watch("Type Energie de chauffage") === "Solaire" && (
+                    <div className="sm:col-span-3  mt-2 w-full">
+                      <label
+                        htmlFor="Systeme de chauffage"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Système de chauffage
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="Systeme de chauffage"
+                          {...register("Systeme de chauffage")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                        >
+                          <option disabled selected>
+                            Sélectionnez une réponse
+                          </option>
+                          <option>Chauffage solaire</option>
+                        </select>
+                        {errors && errors["Systeme de chauffage"] && (
+                          <p className="mt-2 text-sm text-red-400">
+                            {errors["Systeme de chauffage"].message}
                           </p>
                         )}
                       </div>
@@ -893,224 +1080,220 @@ function DemarerSimulation() {
                   )}
                 </div>
 
-                {/* plancher bas */}
+                {/* Chauffage d'appoint */}
                 <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
-                  Plancher bas
+                  Chauffage d&apos;appoint
                 </h2>
-                <div className="col-span-full px-[1rem]">
-                  <div className="flex">
-                    <div className="mt-2 w-full">
-                      <label
-                        htmlFor="Type de plancher bas"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Type de plancher bas{" "}
-                      </label>
-                      <select
-                        id="Type de plancher bas"
-                        {...register("Type de plancher bas")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          Choisissez
-                        </option>
-                        <option>sur vide sanitaire ou sous-sol</option>
-                        <option>sur terre-plein</option>
-                      </select>
-                      {errors.TypeDeBlancherBas?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.TypeDeBlancherBas.message}
-                        </p>
+                <div className="col-span-full px-[1rem] flex flex-col gap-5">
+                  <div className=" mt-2 w-full">
+                    <label
+                      htmlFor="Avez-vous un systeme de chauffage dappoint?"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Avez-vous un système de chauffage d&apos;appoint?
+                    </label>
+                    <select
+                      id="Avez-vous un systeme de chauffage dappoint?"
+                      {...register(
+                        "Avez-vous un systeme de chauffage dappoint?"
                       )}
-                    </div>
-                    <div className="mt-2 w-full">
-                      <label
-                        htmlFor="Plancher bas isolé ?"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Plancher bas isolé ?{" "}
-                      </label>
-                      <select
-                        id="Plancher bas isolé ?"
-                        {...register("Plancher bas isolé ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          ..
-                        </option>
-                        <option>Oui</option>
-                        <option>Non</option>
-                      </select>
-                      {errors.PlancherBasIsole?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.PlancherBasIsole.message}
-                        </p>
-                      )}
-                    </div>
+                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                    >
+                      <option disabled selected>
+                        Sélectionnez une réponse
+                      </option>
+                      <option>Oui</option>
+                      <option>Non</option>
+                    </select>
+                    {errors.NaturePlancherHaut?.message && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {errors.NaturePlancherHaut.message}
+                      </p>
+                    )}
                   </div>
-
-                  {watch("Plancher bas isolé ?") === "Oui" && (
-                    <div className="sm:col-span-3 w-full mt-4">
-                      <label
-                        htmlFor="Année Isolation Plancher bas"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Année d&apos;isolation
-                      </label>
-                      <div className="mt-2">
+                  {watch("Avez-vous un systeme de chauffage dappoint?") ===
+                    "Oui" && (
+                    <div className="col-span-full flex">
+                      <div className=" mt-2 w-full">
+                        <label
+                          htmlFor="Type Energie de chauffage appoint"
+                          className="block text-sm font-medium leading-6 text-gray-900"
+                        >
+                          Type d&apos;énergie de chauffage
+                        </label>
                         <select
-                          id="Année Isolation Plancher bas"
-                          {...register("Année Isolation Plancher bas")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          id="Type Energie de chauffage appoint"
+                          {...register("Type Energie de chauffage appoint")}
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
                           <option disabled selected>
-                            Choisissez
+                            Sélectionnez une réponse
                           </option>
-                          <option>Avant 1975</option>
-                          <option>de 1975 à 1977</option>
-                          <option>de 1978 à 1982</option>
-                          <option>de 1983 à 1988</option>
-                          <option>de 1989 à 2000</option>
-                          <option>de 2001 à 2005</option>
-                          <option>de 2005 à 2012</option>
-                          <option>à partir de 2012</option>
+                          <option>Gaz</option>
+                          <option>Fioul</option>
+                          <option>Bois</option>
+                          <option>Electrique</option>
+                          <option>GPL</option>
+                          <option>Solaire</option>
                         </select>
-                        {errors.AnnéeIsolationPlancherBasIsole?.message && (
+                        {errors.NaturePlancherHautappoint?.message && (
                           <p className="mt-2 text-sm text-red-400">
-                            {errors.AnnéeIsolationPlancherBasIsole.message}
+                            {errors.NaturePlancherHautappoint.message}
                           </p>
                         )}
                       </div>
+
+                      {watch("Type Energie de chauffage") === "Gaz" && (
+                        <div className="sm:col-span-3  mt-2 w-full">
+                          <label
+                            htmlFor="Systeme de chauffage appoint"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Système de chauffage
+                          </label>
+                          <div className="mt-2">
+                            <select
+                              id="Systeme de chauffage appoint"
+                              {...register("Systeme de chauffage appoint")}
+                              className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                              <option disabled selected>
+                                Sélectionnez une réponse
+                              </option>
+                              <option>Chaudière gaz classique</option>
+                              <option>Chaudière gaz Basse</option>
+                              <option>Température</option>
+                              <option>
+                                Chaudière gaz récente à condensation
+                              </option>
+                            </select>
+                            {errors && errors["Systeme de chauffage appoint"] && (
+                              <p className="mt-2 text-sm text-red-400">
+                                {errors["Systeme de chauffage appoint"].message}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {watch("Type Energie de chauffage") === "Fioul" && (
+                        <div className="sm:col-span-3  mt-2 w-full">
+                          <label
+                            htmlFor="Systeme de chauffage appoint"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Système de chauffage
+                          </label>
+                          <div className="mt-2">
+                            <select
+                              id="Systeme de chauffage appoint"
+                              {...register("Systeme de chauffage appoint")}
+                              className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                              <option disabled selected>
+                                Sélectionnez une réponse
+                              </option>
+                              <option>Chaudière fioul</option>
+                              <option>Poêle fioul</option>
+                            </select>
+                            {errors && errors["Systeme de chauffage appoint"] && (
+                              <p className="mt-2 text-sm text-red-400">
+                                {errors["Systeme de chauffage appoint"].message}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {watch("Type Energie de chauffage") === "Bois" && (
+                        <div className="sm:col-span-3  mt-2 w-full">
+                          <label
+                            htmlFor="Systeme de chauffage appoint"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Système de chauffage
+                          </label>
+                          <div className="mt-2">
+                            <select
+                              id="Systeme de chauffage appoint"
+                              {...register("Systeme de chauffage")}
+                              className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                              <option disabled selected>
+                                Sélectionnez une réponse
+                              </option>
+                              <option>Chaudière bois ancienne</option>
+                              <option>Chaudière bois récente</option>
+                              <option>Poêle à granulés</option>
+                            </select>
+                            {errors && errors["Systeme de chauffage"] && (
+                              <p className="mt-2 text-sm text-red-400">
+                                {errors["Systeme de chauffage"].message}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {watch("Type Energie de chauffage") === "Electrique" && (
+                        <div className="sm:col-span-3  mt-2 w-full">
+                          <label
+                            htmlFor="Systeme de chauffage"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Système de chauffage
+                          </label>
+                          <div className="mt-2">
+                            <select
+                              id="Systeme de chauffage"
+                              {...register("Systeme de chauffage")}
+                              className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                              <option disabled selected>
+                                Sélectionnez une réponse
+                              </option>
+                              <option>Convecteur électriquee</option>
+                              <option>Panneau rayonnant électrique</option>
+                              <option>PAC air/air</option>
+                              <option>PAC air/eau</option>
+                              <option>PAC eau/eau</option>
+                              <option>PAC Géothermie</option>
+                            </select>
+                            {errors && errors["Systeme de chauffage"] && (
+                              <p className="mt-2 text-sm text-red-400">
+                                {errors["Systeme de chauffage"].message}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {watch("Type Energie de chauffage") === "GPL" && (
+                        <div className="sm:col-span-3  mt-2 w-full">
+                          <label
+                            htmlFor="Systeme de chauffage"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Système de chauffage
+                          </label>
+                          <div className="mt-2">
+                            <select
+                              id="Systeme de chauffage"
+                              {...register("Systeme de chauffage")}
+                              className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                              <option disabled selected>
+                                Sélectionnez une réponse
+                              </option>
+                              <option>Poêle GPL</option>
+                            </select>
+                            {errors && errors["Systeme de chauffage"] && (
+                              <p className="mt-2 text-sm text-red-400">
+                                {errors["Systeme de chauffage"].message}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                   
                     </div>
                   )}
-                </div>
-
-                {/* plancher Haut */}
-                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
-                  Plancher haut
-                </h2>
-                <div className="col-span-full px-[1rem]">
-                  <div className="flex">
-                    <div className="mt-2 w-full">
-                      <label
-                        htmlFor="Nature plancher haut"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Nature plancher haut
-                      </label>
-                      <select
-                        id="Nature plancher haut"
-                        {...register("Nature plancher haut")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          Choisissez
-                        </option>
-                        <option>Combles perdus (combles)</option>
-                        <option>Combles aménagés (combles)</option>
-                        <option>Toiture terrasse</option>
-                      </select>
-                      {errors.NaturePlancherHaut?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.NaturePlancherHaut.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="mt-2 w-full">
-                      <label
-                        htmlFor="Plancher haut isolé ?"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Plancher haut isolé ?
-                      </label>
-                      <select
-                        id="Plancher haut isolé ?"
-                        {...register("Plancher haut isolé ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          ..
-                        </option>
-                        <option>Oui</option>
-                        <option>Non</option>
-                      </select>
-                      {errors.PlancherHautIsolé?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.PlancherHautIsolé.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {watch("Plancher haut isolé ?") === "Oui" && (
-                    <div className="sm:col-span-3 w-full mt-4">
-                      <label
-                        htmlFor="Année Isolation Plancher Haut"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Année d&apos;isolation
-                      </label>
-                      <div className="mt-2">
-                        <select
-                          id="Année Isolation Plancher Haut"
-                          {...register("Année Isolation Plancher Haut")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                        >
-                          <option disabled selected>
-                            Choisissez
-                          </option>
-                          <option>Avant 1975</option>
-                          <option>de 1975 à 1977</option>
-                          <option>de 1978 à 1982</option>
-                          <option>de 1983 à 1988</option>
-                          <option>de 1989 à 2000</option>
-                          <option>de 2001 à 2005</option>
-                          <option>de 2005 à 2012</option>
-                          <option>à partir de 2012</option>
-                        </select>
-                        {errors.AnnéeIsolationPlancherHaut?.message && (
-                          <p className="mt-2 text-sm text-red-400">
-                            {errors.AnnéeIsolationPlancherHaut.message}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* plancher Haut */}
-                <h2 className="text-base font-semibold leading-7 text-gray-700 mt-8">
-                  Vitrage
-                </h2>
-                <div className="col-span-full px-[1rem]">
-                  <div className="flex">
-                    <div className="mt-2 w-full">
-                      <label
-                        htmlFor="Type de vitrage principal ?"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Type de vitrage principal ?
-                      </label>
-                      <select
-                        id="Type de vitrage principal ?"
-                        {...register("Type de vitrage principal ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                      >
-                        <option disabled selected>
-                          Choisissez
-                        </option>
-                        <option>Simple vitrage</option>
-                        <option>Double vitrage ancien</option>
-                        <option>Double vitrage récent</option>
-                        <option>Triple vitrage</option>
-                      </select>
-                      {errors.TypeDeVitragePrincipal?.message && (
-                        <p className="mt-2 text-sm text-red-400">
-                          {errors.NaturePlancherHaut.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
@@ -1144,7 +1327,7 @@ function DemarerSimulation() {
                       <select
                         id="Vos murs sont-ils isolés ?"
                         {...register("Vos murs sont-ils isolés ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
                           ..
@@ -1171,10 +1354,10 @@ function DemarerSimulation() {
                         <select
                           id="Année Isolation murs"
                           {...register("Année Isolation murs")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
                           <option disabled selected>
-                            Choisissez
+                            Sélectionnez une réponse
                           </option>
                           <option>Avant 1975</option>
                           <option>de 1975 à 1977</option>
@@ -1211,10 +1394,10 @@ function DemarerSimulation() {
                       <select
                         id="Type de plancher bas"
                         {...register("Type de plancher bas")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>sur vide sanitaire ou sous-sol</option>
                         <option>sur terre-plein</option>
@@ -1235,7 +1418,7 @@ function DemarerSimulation() {
                       <select
                         id="Plancher bas isolé ?"
                         {...register("Plancher bas isolé ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
                           ..
@@ -1263,10 +1446,10 @@ function DemarerSimulation() {
                         <select
                           id="Année Isolation Plancher bas"
                           {...register("Année Isolation Plancher bas")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
                           <option disabled selected>
-                            Choisissez
+                            Sélectionnez une réponse
                           </option>
                           <option>Avant 1975</option>
                           <option>de 1975 à 1977</option>
@@ -1303,10 +1486,10 @@ function DemarerSimulation() {
                       <select
                         id="Nature plancher haut"
                         {...register("Nature plancher haut")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>Combles perdus (combles)</option>
                         <option>Combles aménagés (combles)</option>
@@ -1328,7 +1511,7 @@ function DemarerSimulation() {
                       <select
                         id="Plancher haut isolé ?"
                         {...register("Plancher haut isolé ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
                           ..
@@ -1356,10 +1539,10 @@ function DemarerSimulation() {
                         <select
                           id="Année Isolation Plancher Haut"
                           {...register("Année Isolation Plancher Haut")}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
                           <option disabled selected>
-                            Choisissez
+                            Sélectionnez une réponse
                           </option>
                           <option>Avant 1975</option>
                           <option>de 1975 à 1977</option>
@@ -1396,10 +1579,10 @@ function DemarerSimulation() {
                       <select
                         id="Type de vitrage principal ?"
                         {...register("Type de vitrage principal ?")}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                        className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option disabled selected>
-                          Choisissez
+                          Sélectionnez une réponse
                         </option>
                         <option>Simple vitrage</option>
                         <option>Double vitrage ancien</option>

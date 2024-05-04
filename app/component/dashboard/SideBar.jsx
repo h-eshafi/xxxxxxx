@@ -11,11 +11,10 @@ function SideBar() {
       id="accordionSidebar"
     >
       {/* Sidebar - Brand */}
-      <a
-        className=" d-flex align-items-center justify-content-center"
-        href="index.html"
-      >
-        <Image src={logo} width={100} height={100} alt="logo" />
+      <a className="d-flex align-items-center justify-content-center h-[93px]">
+        <div className="w-14rem">
+          <Image src={logo} className="h-full w-full" alt="logo" />
+        </div>
       </a>
 
       {/* Nav Item - Dashboard */}
