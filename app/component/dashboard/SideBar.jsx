@@ -71,7 +71,7 @@ function SideBar() {
       {/* Nav Item - Charts */}
       <li className="nav-item">
         <a className="nav-link" href="charts.html">
-          <span>Payment</span>
+          <span>Paiement</span>
         </a>
       </li>
 

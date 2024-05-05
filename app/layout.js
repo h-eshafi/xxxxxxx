@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Console from "./component/Conslole";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} h-full `}>
 
         {children}
-        
+        <Console/>
         </body>
     </html>
   );
