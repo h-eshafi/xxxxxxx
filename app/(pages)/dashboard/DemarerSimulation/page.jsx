@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import Navigation from "@/app/component/dashboard/Dernier Simulation/Navigation";
 import Nav from "../../../component/dashboard/Dernier Simulation/Nav";
 import carre from "@/public/icons/dernierSimulation/ICON QuickAudit-01.png";
 import rectangle from "@/public/icons/dernierSimulation/ICON QuickAudit-02.png";
@@ -15,27 +14,53 @@ import mitoyenne3 from "@/public/icons/dernierSimulation/Indépendante (4 façad
 import niv1 from "@/public/icons/dernierSimulation/1 niveau -08.png";
 import niv2 from "@/public/icons/dernierSimulation/2 niveau -09.png";
 import niv3 from "@/public/icons/dernierSimulation/ 3 niveaux-10.png";
+import Navigation from "@/app/component/dashboard/Dernier Simulation/Navigation";
 
 const steps = [
   {
     id: "Step 1",
-    name: "données générales",
-    fields: ["Code du département", "lastName", "email"],
+    fields: [
+      "CodeDepartement",
+      "AnneConstruction",
+      "Forme du logement",
+      "Surface habitable",
+    ],
   },
   {
     id: "Step 2",
-    name: "Enveloppe thermique",
-    fields: ["country", "state", "city", "street", "zip"],
+    fields: [
+      "Vos murs sont-ils isolés ?",
+      "Type de plancher bas",
+      "Plancher bas isolé ?",
+      "Année Isolation Plancher bas",
+      "Nature plancher haut",
+      "Plancher haut isolé ?",
+      "Année Isolation Plancher Haut",
+      "Type de vitrage principal ?",
+    ],
   },
   {
     id: "Step 3",
-    name: "Systèmes énergétiques",
-    fields: ["country", "state", "city", "street", "zip"],
+    fields: [
+      "Type de ventilation",
+      "Type Energie de chauffage",
+      "Systeme de chauffage",
+      "Avezvous un systeme de chauffage dappoint?",
+      "Type Energie de chauffage appoint",
+      "Systeme de chauffage appoint",
+      "Type denergie de production dEau chaude sanitaire",
+      "Type dinstallation ECS",
+      "Type denergie de production dEau chaude sanitaire",
+    ],
   },
   {
     id: "Step 4",
-    name: "Mon foyer",
-    fields: ["country", "state", "city", "street", "zip"],
+    fields: [
+      "Revenu fiscal de référence Saisie libre Combien de personnes",
+      "composent votre foyer vous compris ?",
+      "Votre logement est construit depuis au moins 15 ans ?",
+      "Votre logement est occupé à titre de résidence",
+    ],
   },
 ];
 const FormeDuLogement = [
@@ -60,7 +85,7 @@ function DemarerSimulation() {
   const [currentStep, setCurrentStep] = useState(0);
   const delta = currentStep - previousStep;
 
-  // State button variables to useform
+  // State button variables to logement
   const [selectedButton, setSelectedButton] = useState(null);
   const handleButtonClick = (buttonId) => {
     setSelectedButton(buttonId);
@@ -73,6 +98,7 @@ function DemarerSimulation() {
     setSelectedMitoyennete(buttonId);
     setValue("Mitoyenneté de la maison", buttonId);
   };
+
   // State variables for NombreDeNiveauxHabitables
   const [
     SelectedNombreDeNiveauxHabitables,
@@ -83,6 +109,7 @@ function DemarerSimulation() {
     setSelectedNombreDeNiveauxHabitables(buttonId);
     setValue("Nombre de niveaux habitables", buttonId);
   };
+
   const {
     register,
     handleSubmit,
@@ -94,6 +121,7 @@ function DemarerSimulation() {
   } = useForm();
 
   const processForm = (data) => {
+    console.log(trigger);
     if (data["Vos murs sont-ils isolés ?"] === "Non") {
       // Exclude "Année Isolation Plancher bas" from the data object
       const { ["Année Isolation murs"]: _, ...filteredData } = data;
@@ -139,9 +167,14 @@ function DemarerSimulation() {
                     <select
                       id="CodeDepartement"
                       {...register("CodeDepartement")}
-                      autoComplete="country-name"
                       className=" bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
+                      <option
+                        value=""
+                        disabled={watch("CodeDepartement") === ""}
+                      >
+                        Sélectionnez une réponse
+                      </option>
                       {[...Array(99).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
                           {num + 1}
@@ -169,7 +202,10 @@ function DemarerSimulation() {
                       {...register("AnneConstruction")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("AnneConstruction") === ""}
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Avant 1975</option>
@@ -249,83 +285,7 @@ function DemarerSimulation() {
                         height={47}
                         className="rounded-[20%]"
                       />
-                      {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="59"
-                        viewBox="0 0 51 59"
-                      >
-                        <g
-                          id="Groupe_1794"
-                          data-name="Groupe 1794"
-                          transform="translate(-676 -808)"
-                        >
-                          <g
-                            id="Group_2"
-                            data-name="Group 2"
-                            transform="translate(676 808)"
-                          >
-                            <path
-                              id="Combined_Shape"
-                              data-name="Combined Shape"
-                              d="M0,59V21.2L25.5,0,36.975,9.539V6.713h5.95v7.773L51,21.2V59Z"
-                              transform="translate(0 0)"
-                              fill="#ebeced"
-                            />
-                            <g
-                              id="Path_2"
-                              data-name="Path 2"
-                              transform="translate(3.905 4.628)"
-                              fill="#ebeced"
-                              stroke-miterlimit="10"
-                            >
-                              <path
-                                d="M 42.53225708007812 50.14931488037109 L 0.7499985694885254 50.14931488037109 L 0.7499985694885254 18.07347106933594 L 21.64538383483887 0.9693096280097961 L 42.53225708007812 18.07337951660156 L 42.53225708007812 50.14931488037109 Z"
-                                stroke="none"
-                              />
-                              <path
-                                d="M 21.64528846740723 1.938602447509766 L 1.5 18.42877578735352 L 1.5 49.39930725097656 L 41.78225708007812 49.39930725097656 L 41.78225708007812 18.42859268188477 L 21.64528846740723 1.938602447509766 M 21.64547920227051 -3.814697265625e-06 L 43.28225708007812 17.71816635131836 L 43.28225708007812 50.89930725097656 L 0 50.89930725097656 L 0 17.71816635131836 L 21.64547920227051 -3.814697265625e-06 Z"
-                                stroke="none"
-                                fill="#fff"
-                              />
-                            </g>
-                          </g>
-                          <g
-                            id="Rectangle_257"
-                            data-name="Rectangle 257"
-                            transform="translate(680 831)"
-                            fill="#909da2"
-                            stroke="#fff"
-                            stroke-width="1.5"
-                          >
-                            <rect width="43" height="17" stroke="none" />
-                            <rect
-                              x="0.75"
-                              y="0.75"
-                              width="41.5"
-                              height="15.5"
-                              fill="none"
-                            />
-                          </g>
-                          <g
-                            id="Rectangle_259"
-                            data-name="Rectangle 259"
-                            transform="translate(680 844)"
-                            fill="#909da2"
-                            stroke="#fff"
-                            stroke-width="1.5"
-                          >
-                            <rect width="43" height="19" stroke="none" />
-                            <rect
-                              x="0.75"
-                              y="0.75"
-                              width="41.5"
-                              height="17.5"
-                              fill="none"
-                            />
-                          </g>
-                        </g>
-                      </svg> */}
+
                       <p className="m-0">{option.text}</p>
                     </li>
                   ))}
@@ -368,18 +328,18 @@ function DemarerSimulation() {
               </div>
 
               <div className="mt-[3rem] ">
-                <div class="flex flex-col gap-6 w-[40%]">
-                  <div class="relative h-11 w-full min-w-[200px]">
+                <div className="flex flex-col gap-6 w-[40%]">
+                  <div className="relative h-11 w-full min-w-[200px]">
                     <input
                       type="number"
                       id="SurfaceHabitable"
                       {...register("Surface habitable")}
                       placeholder=" Surface habitable"
-                      class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:mainBlue focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                      className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:mainBlue focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     />
                     <label
                       htmlFor="FormeLogement"
-                      class="block text-sm font-medium leading-6 text-black after:content[' '] pointer-events-none absolute left-0  -top-2.5 flex h-full w-full select-none !overflow-visible truncate text-sm font-normal leading-tight transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-mainBlue after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:mainBlue peer-focus:after:scale-x-100 peer-focus:after:border-mainBlue peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+                      className="block text-sm font-medium leading-6 text-black after:content[' '] pointer-events-none absolute left-0  -top-[1rem] flex h-full w-full select-none !overflow-visible truncate text-sm font-normal leading-tight transition-all after:absolute after:-bottom-[1rem] after:block after:w-full after:scale-x-0 after:border-b-2 after:border-mainBlue after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:mainBlue peer-focus:after:scale-x-100 peer-focus:after:border-mainBlue peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
                     >
                       Surface habitable
                     </label>
@@ -418,7 +378,10 @@ function DemarerSimulation() {
                       {...register("Vos murs sont-ils isolés ?")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Vos murs sont-ils isolés ?") === ""}
+                      >
                         ..
                       </option>
                       <option>Oui</option>
@@ -445,7 +408,10 @@ function DemarerSimulation() {
                         {...register("Année Isolation murs")}
                         className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
-                        <option disabled selected>
+                        <option
+                          value=""
+                          disabled={watch("Année Isolation murs") === ""}
+                        >
                           Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
@@ -485,9 +451,7 @@ function DemarerSimulation() {
                       {...register("Type de plancher bas")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
-                        Sélectionnez une réponse
-                      </option>
+                      <option disabled>Sélectionnez une réponse</option>
                       <option>sur vide sanitaire ou sous-sol</option>
                       <option>sur terre-plein</option>
                     </select>
@@ -509,7 +473,10 @@ function DemarerSimulation() {
                       {...register("Plancher bas isolé ?")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Plancher bas isolé ?") === ""}
+                      >
                         Sélectionnez une réponse{" "}
                       </option>
                       <option>Oui</option>
@@ -537,7 +504,12 @@ function DemarerSimulation() {
                         {...register("Année Isolation Plancher bas")}
                         className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
-                        <option disabled selected>
+                        <option
+                          value=""
+                          disabled={
+                            watch("Année Isolation Plancher bas") === ""
+                          }
+                        >
                           Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
@@ -577,7 +549,10 @@ function DemarerSimulation() {
                       {...register("Nature plancher haut")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Nature plancher haut") === ""}
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Combles perdus (combles)</option>
@@ -602,7 +577,10 @@ function DemarerSimulation() {
                       {...register("Plancher haut isolé ?")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Plancher haut isolé ?") === ""}
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Oui</option>
@@ -630,7 +608,12 @@ function DemarerSimulation() {
                         {...register("Année Isolation Plancher Haut")}
                         className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                       >
-                        <option disabled selected>
+                        <option
+                          value=""
+                          disabled={
+                            watch("Année Isolation Plancher Haut") === ""
+                          }
+                        >
                           Sélectionnez une réponse
                         </option>
                         <option>Avant 1975</option>
@@ -670,7 +653,10 @@ function DemarerSimulation() {
                       {...register("Type de vitrage principal ?")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Type de vitrage principal ?") === ""}
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Simple vitrage</option>
@@ -719,7 +705,10 @@ function DemarerSimulation() {
                       {...register("Type de ventilation")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Type de ventilation") === ""}
+                      >
                         ...
                       </option>
                       <option>Ventilation par ouverture des fenêtres</option>
@@ -764,7 +753,10 @@ function DemarerSimulation() {
                       {...register("Type Energie de chauffage")}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={watch("Type Energie de chauffage") === ""}
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Gaz</option>
@@ -795,7 +787,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Chaudière gaz classique</option>
@@ -825,7 +820,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Chaudière fioul</option>
@@ -853,7 +851,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Chaudière bois ancienne</option>
@@ -882,7 +883,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Convecteur électriquee</option>
@@ -914,7 +918,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Poêle GPL</option>
@@ -941,7 +948,10 @@ function DemarerSimulation() {
                           {...register("Systeme de chauffage")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Systeme de chauffage") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Chauffage solaire</option>
@@ -975,7 +985,14 @@ function DemarerSimulation() {
                       )}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={
+                          watch(
+                            "Avezvous un systeme de chauffage dappoint?"
+                          ) === ""
+                        }
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Oui</option>
@@ -1002,7 +1019,12 @@ function DemarerSimulation() {
                           {...register("Type Energie de chauffage appoint")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={
+                              watch("Type Energie de chauffage appoint") === ""
+                            }
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Gaz</option>
@@ -1032,7 +1054,12 @@ function DemarerSimulation() {
                               {...register("Systeme de chauffage appoint")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
-                              <option disabled selected>
+                              <option
+                                value=""
+                                disabled={
+                                  watch("Systeme de chauffage appoint") === ""
+                                }
+                              >
                                 Sélectionnez une réponse
                               </option>
                               <option>Chaudière gaz classique</option>
@@ -1069,7 +1096,12 @@ function DemarerSimulation() {
                               {...register("Systeme de chauffage appoint")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
-                              <option disabled selected>
+                              <option
+                                value=""
+                                disabled={
+                                  watch("Systeme de chauffage appoint") === ""
+                                }
+                              >
                                 Sélectionnez une réponse
                               </option>
                               <option>Chaudière fioul</option>
@@ -1102,7 +1134,12 @@ function DemarerSimulation() {
                               {...register("Systeme de chauffage")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
-                              <option disabled selected>
+                              <option
+                                value=""
+                                disabled={
+                                  watch("Systeme de chauffage appoint") === ""
+                                }
+                              >
                                 Sélectionnez une réponse
                               </option>
                               <option>Chaudière bois ancienne</option>
@@ -1132,7 +1169,12 @@ function DemarerSimulation() {
                               {...register("Systeme de chauffage")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
-                              <option disabled selected>
+                              <option
+                                value=""
+                                disabled={
+                                  watch("Systeme de chauffage appoint") === ""
+                                }
+                              >
                                 Sélectionnez une réponse
                               </option>
                               <option>Convecteur électriquee</option>
@@ -1164,7 +1206,12 @@ function DemarerSimulation() {
                               {...register("Systeme de chauffage")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
-                              <option disabled selected>
+                              <option
+                                value=""
+                                disabled={
+                                  watch("Systeme de chauffage appoint") === ""
+                                }
+                              >
                                 Sélectionnez une réponse
                               </option>
                               <option>Poêle GPL</option>
@@ -1201,7 +1248,14 @@ function DemarerSimulation() {
                       )}
                       className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option disabled selected>
+                      <option
+                        value=""
+                        disabled={
+                          watch(
+                            "Type denergie de production dEau chaude sanitaire"
+                          ) === ""
+                        }
+                      >
                         Sélectionnez une réponse
                       </option>
                       <option>Gaz</option>
@@ -1231,7 +1285,10 @@ function DemarerSimulation() {
                           {...register("Type dinstallation ECS")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Type dinstallation ECS") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Chauffe-eau gaz ancien</option>
@@ -1263,7 +1320,10 @@ function DemarerSimulation() {
                           {...register("Type dinstallation ECS")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Type dinstallation ECS") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>thermodynamique</option>
@@ -1292,7 +1352,10 @@ function DemarerSimulation() {
                           {...register("Type dinstallation ECS")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Type dinstallation ECS") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Le système de chauffage</option>
@@ -1321,7 +1384,10 @@ function DemarerSimulation() {
                           {...register("Type dinstallation ECS")}
                           className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option disabled selected>
+                          <option
+                            value=""
+                            disabled={watch("Type dinstallation ECS") === ""}
+                          >
                             Sélectionnez une réponse
                           </option>
                           <option>Solaire avec appoint électrique</option>
@@ -1447,7 +1513,14 @@ function DemarerSimulation() {
                   </div>
                 </div>
               </div>
-              <button type="submit">submit</button>
+              <div className="flex justify-end items-center">
+                <button
+                  type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  VOIR LES RÉSULTATS
+                </button>
+              </div>
             </motion.div>
           </>
         )}
@@ -1461,6 +1534,7 @@ function DemarerSimulation() {
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
         steps={steps}
+        watch={watch}
       />
     </section>
   );

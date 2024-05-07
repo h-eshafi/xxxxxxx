@@ -1,17 +1,51 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function Navigation({
   setPreviousStep,
   setCurrentStep,
   currentStep,
   steps,
+  watch,
   trigger,
 }) {
   const next = async () => {
-    const fields = steps[currentStep].fields;
-    const output = await trigger(fields, { shouldFocus: true });
+    // Check if all required fields are filled
+    const currentFields = steps[currentStep].fields;
+    const filled = currentFields.every((field) => {
+      // Check if the current field is "Année Isolation murs"
+      // and if the user selected "Non" for "Vos murs sont-ils isolés ?
+      if (
+        // Skip checking "Année Isolation murs" when "Non" is selected
+        // and consider it as filled
+        // Step 2
+        (field === "Année Isolation murs" &&
+          watch("Vos murs sont-ils isolés ?") === "Non") ||
+        (field === "Année Isolation Plancher bas" &&
+          watch("Plancher bas isolé ?") === "Non") ||
+        (field === "Année Isolation Plancher Haut" &&
+          watch("Plancher haut isolé ?") === "Non") ||
+        // Step 3
+        (field === "Type Energie de chauffage appoint" &&
+          watch("Avezvous un systeme de chauffage dappoint?") === "Non") ||
+        (field === "Systeme de chauffage appoint" &&
+          watch("Avezvous un systeme de chauffage dappoint?") === "Non")
+      ) {
+        // For other fields or when "Non" is not selected,
+        // check if the current field has been filled using watch(field)
+        return true;
+      }
+      return watch(field);
+    });
+    console.log(filled);
+    console.log(`Form data: Step ${currentStep + 1}`, watch()); // Log the currently registered form values
 
-    if (!output) return;
+    if (!filled) {
+      // If any required field is not filled, return without proceeding
+      toast.error("Assurez-vous de répondre à chaque question.");
+      console.log("fill all field");
+      return;
+    }
 
     if (currentStep < steps.length - 1) {
       if (currentStep === steps.length - 1) {

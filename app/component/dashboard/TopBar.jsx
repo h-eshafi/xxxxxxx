@@ -22,7 +22,7 @@ function Page() {
         <div className="input-group">
           <input
             type="text"
-            className="form-control bg-light border-0 small"
+            className="form-control p-2 rounded-sm bg-light border-0 small"
             placeholder="Search for..."
             aria-label="Search"
             aria-describedby="basic-addon2"
