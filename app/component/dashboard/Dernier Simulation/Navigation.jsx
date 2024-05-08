@@ -1,5 +1,5 @@
 import React from "react";
-import { toast } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 
 function Navigation({
   setPreviousStep,
@@ -42,7 +42,17 @@ function Navigation({
 
     if (!filled) {
       // If any required field is not filled, return without proceeding
-      toast.error("Assurez-vous de répondre à chaque question.");
+      toast.warn("Assurez-vous de répondre à chaque question.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       console.log("fill all field");
       return;
     }

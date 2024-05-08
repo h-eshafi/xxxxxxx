@@ -18,7 +18,7 @@ function Page() {
       </button>
 
       {/* Topbar Search */}
-      <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <form className="d-none d-md-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div className="input-group">
           <input
             type="text"

@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       colors: {
         mainBlue: "#2e55c7",
-        mainGreen: "rgb(187 247 208 / var(--tw-bg-opacity))"
+        mainGreen: "rgb(187 247 208 / var(--tw-bg-opacity))",
+        softGray: "#ebebeb"
       },
 
       backgroundImage: {

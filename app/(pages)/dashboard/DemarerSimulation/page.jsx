@@ -144,6 +144,7 @@ function DemarerSimulation() {
       <Nav steps={steps} currentStep={currentStep} />
 
       {/* Form */}
+
       <form className="px-[2rem]" onSubmit={handleSubmit(processForm)}>
         {currentStep === 0 && (
           <motion.div

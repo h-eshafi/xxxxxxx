@@ -10,14 +10,12 @@ function SideBar() {
       className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
-      {/* Sidebar - Brand */}
       <a className="d-flex align-items-center justify-content-center h-[93px]">
         <div className="w-14rem">
           <Image src={logo} className="h-full w-full" alt="logo" />
         </div>
       </a>
 
-      {/* Nav Item - Dashboard */}
       <li className="nav-item active">
         <a className="nav-link" href="index.html">
           <i className="fas fa-fw fa-tachometer-alt"></i>
@@ -25,57 +23,41 @@ function SideBar() {
         </a>
       </li>
 
-      {/* Divider */}
       <hr className="sidebar-divider" />
 
-      {/* Heading */}
-
-      {/* Nav Item - Pages Collapse Menu */}
       <li className="nav-item">
         <Link
           className="nav-link collapsed"
           href="/dashboard/DemarerSimulation"
         >
-          <span>Démarrer la simulation.</span>
+          <span>Démarrer la simulation</span>
         </Link>
       </li>
 
       <hr className="sidebar-divider" />
 
-      {/* Nav Item - Utilities Collapse Menu */}
       <li className="nav-item">
         <Link className="nav-link collapsed" href="/dashboard/Historique">
           <span>Historique</span>
         </Link>
       </li>
 
-      {/* Divider */}
       <hr className="sidebar-divider" />
 
-      {/* Nav Item - Pages Collapse Menu */}
       <li className="nav-item">
-        <a
-          className="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapsePages"
-          aria-expanded="true"
-          aria-controls="collapsePages"
-        >
+        <Link className="nav-link collapsed" href="/dashboard/Profile">
           <span>Profile</span>
-        </a>
+        </Link>
       </li>
 
       <hr className="sidebar-divider" />
 
-      {/* Nav Item - Charts */}
       <li className="nav-item">
         <a className="nav-link" href="charts.html">
           <span>Paiement</span>
         </a>
       </li>
 
-      {/* Divider */}
       <hr className="sidebar-divider d-none d-md-block" />
     </ul>
   );
