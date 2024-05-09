@@ -121,7 +121,7 @@ function DemarerSimulation() {
   } = useForm();
 
   const processForm = (data) => {
-    console.log(trigger);
+    console.log(data);
     if (data["Vos murs sont-ils isolés ?"] === "Non") {
       // Exclude "Année Isolation Plancher bas" from the data object
       const { ["Année Isolation murs"]: _, ...filteredData } = data;
@@ -974,7 +974,7 @@ function DemarerSimulation() {
                 <div className="col-span-full px-[1rem] flex flex-col gap-5">
                   <div className=" mt-2 w-full">
                     <label
-                      htmlFor="Avez-vous un systeme de chauffage dappoint?"
+                      htmlFor="Avezvous un systeme de chauffage dappoint?"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
                       Avez-vous un système de chauffage d&apos;appoint?
@@ -1132,7 +1132,7 @@ function DemarerSimulation() {
                           <div className="mt-2">
                             <select
                               id="Systeme de chauffage appoint"
-                              {...register("Systeme de chauffage")}
+                              {...register("Systeme de chauffage appoint")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
                               <option
@@ -1147,11 +1147,15 @@ function DemarerSimulation() {
                               <option>Chaudière bois récente</option>
                               <option>Poêle à granulés</option>
                             </select>
-                            {errors && errors["Systeme de chauffage"] && (
-                              <p className="mt-2 text-sm text-red-400">
-                                {errors["Systeme de chauffage"].message}
-                              </p>
-                            )}
+                            {errors &&
+                              errors["Systeme de chauffage appoint"] && (
+                                <p className="mt-2 text-sm text-red-400">
+                                  {
+                                    errors["Systeme de chauffage appoint"]
+                                      .message
+                                  }
+                                </p>
+                              )}
                           </div>
                         </div>
                       )}
@@ -1159,15 +1163,15 @@ function DemarerSimulation() {
                         "Electrique" && (
                         <div className="sm:col-span-3  mt-2 w-full">
                           <label
-                            htmlFor="Systeme de chauffage"
+                            htmlFor="Systeme de chauffage appoint"
                             className="block text-sm font-medium leading-6 text-gray-900"
                           >
                             Système de chauffage
                           </label>
                           <div className="mt-2">
                             <select
-                              id="Systeme de chauffage"
-                              {...register("Systeme de chauffage")}
+                              id="Systeme de chauffage appoint"
+                              {...register("Systeme de chauffage appoint")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
                               <option
@@ -1185,26 +1189,30 @@ function DemarerSimulation() {
                               <option>PAC eau/eau</option>
                               <option>PAC Géothermie</option>
                             </select>
-                            {errors && errors["Systeme de chauffage"] && (
-                              <p className="mt-2 text-sm text-red-400">
-                                {errors["Systeme de chauffage"].message}
-                              </p>
-                            )}
+                            {errors &&
+                              errors["Systeme de chauffage appoint"] && (
+                                <p className="mt-2 text-sm text-red-400">
+                                  {
+                                    errors["Systeme de chauffage appoint"]
+                                      .message
+                                  }
+                                </p>
+                              )}
                           </div>
                         </div>
                       )}
                       {watch("Type Energie de chauffage appoint") === "GPL" && (
                         <div className="sm:col-span-3  mt-2 w-full">
                           <label
-                            htmlFor="Systeme de chauffage"
+                            htmlFor="Systeme de chauffage appoint"
                             className="block text-sm font-medium leading-6 text-gray-900"
                           >
                             Système de chauffage
                           </label>
                           <div className="mt-2">
                             <select
-                              id="Systeme de chauffage"
-                              {...register("Systeme de chauffage")}
+                              id="Systeme de chauffage appoint"
+                              {...register("Systeme de chauffage appoint")}
                               className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  sm:max-w-xs sm:text-sm sm:leading-6"
                             >
                               <option
@@ -1217,11 +1225,15 @@ function DemarerSimulation() {
                               </option>
                               <option>Poêle GPL</option>
                             </select>
-                            {errors && errors["Systeme de chauffage"] && (
-                              <p className="mt-2 text-sm text-red-400">
-                                {errors["Systeme de chauffage"].message}
-                              </p>
-                            )}
+                            {errors &&
+                              errors["Systeme de chauffage appoint"] && (
+                                <p className="mt-2 text-sm text-red-400">
+                                  {
+                                    errors["Systeme de chauffage appoint"]
+                                      .message
+                                  }
+                                </p>
+                              )}
                           </div>
                         </div>
                       )}

@@ -36,7 +36,8 @@ function Profile() {
                 <p className="text-sm text-gray-600">{user.timezone}</p>
               </div>
             </div>
-            <div className="b border-t-[1px] border-b-softGray w-full ">
+
+            <div className="border-t-[1px] border-b-softGray w-full ">
               <button className="py-4 w-full hover:bg-[#3b82f654] text-mainBlue  text-gray-q00 px-4 rounded-bl-3xl rounded-br-3xl flex justify-center items-center">
                 <svg
                   className="fill-current w-4 h-4 mr-2"
@@ -53,9 +54,10 @@ function Profile() {
           {/* form */}
 
           <form className="w-full md:w-[60%] rounded-3xl bg-white shadow-md p-4 flex flex-col justify-between border-softGray border-[1px]">
-            <p className=" font-normal text-sm p-4 m-0">
+            <p className=" text-gray-700 font-normal p-4 text-base m-0">
               Les informations peuvent être modifiées
             </p>
+            <hr />
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col gap-6 md:gap-0">
                 <div class="bg-white p-0 md:p-4 rounded-lg flex flex-col md:flex-row  gap-6 md:gap-3">
@@ -146,6 +148,7 @@ function Profile() {
                 </div>
               </div>
             </div>
+            <hr />
             <div className="w-full flex justify-end px-3">
               <button
                 type="button"
