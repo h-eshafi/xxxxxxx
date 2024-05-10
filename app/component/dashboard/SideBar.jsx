@@ -19,7 +19,7 @@ function SideBar() {
       <li className="nav-item active">
         <a className="nav-link" href="index.html">
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <span>Tableau de bord</span>
         </a>
       </li>
 
@@ -53,9 +53,9 @@ function SideBar() {
       <hr className="sidebar-divider" />
 
       <li className="nav-item">
-        <a className="nav-link" href="charts.html">
-          <span>Paiement</span>
-        </a>
+        <Link className="nav-link collapsed" href="/dashboard/paiement">
+          <span>Abonnement</span>
+        </Link>
       </li>
 
       <hr className="sidebar-divider d-none d-md-block" />

@@ -333,6 +333,7 @@ function DemarerSimulation() {
                   <div className="relative h-11 w-full min-w-[200px]">
                     <input
                       type="number"
+                      min="0"
                       id="SurfaceHabitable"
                       {...register("Surface habitable")}
                       placeholder=" Surface habitable"
@@ -1437,6 +1438,7 @@ function DemarerSimulation() {
                     <div class="relative h-11 w-full min-w-[200px]">
                       <input
                         type="number"
+                        min="0"
                         id="Revenu fiscal de référence Saisie libre Combien de personnes"
                         {...register(
                           "Revenu fiscal de référence Saisie libre Combien de personnes"
@@ -1457,6 +1459,7 @@ function DemarerSimulation() {
                     <div class="relative h-11 w-full min-w-[200px]">
                       <input
                         type="number"
+                        min="0"
                         id="composent votre foyer vous compris ?"
                         {...register("composent votre foyer vous compris ?")}
                         placeholder=" Saisie libre"

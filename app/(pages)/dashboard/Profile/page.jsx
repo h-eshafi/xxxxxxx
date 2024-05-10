@@ -9,8 +9,8 @@ const user = {
   avatar: profileimg,
   jobTitle: "Senior Developer",
   PhoneNumber: "",
-  country: "USA",
-  city: "Los Angeles",
+  country: "Fc",
+  city: "Côte-d'Or, Dijon",
   timezone: "GTM-7",
 };
 
