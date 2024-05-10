@@ -1,91 +1,95 @@
-import Link from "next/link";
+import Image from "next/image";
 import React from "react";
+import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
+import Link from "next/link";
 
-function page() {
+function Login() {
   return (
-    <div>
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
+    <div className="py-6">
+      <div className="h-[90vh] w-[100vw] flex bg-white rounded-3xl shadow-lg overflow-hidden mx-auto max-w-sm           lg:max-w-6xl">
+        {/* image */}
+        <div className="flex  lg:w-1/2 bg-cover  justify-center items-center bg-[#1e00b9]">
+          <Image alt="logo" src={logo} width={400} height={400} />
         </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
-            <div>
+        {/* form */}
+        <div className="w-full p-16 lg:w-1/2">
+          <p className="text-xl text-gray-600 text-center">Login</p>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="border-b w-full "></span>
+          </div>
+          <div className="mt-4">
+            <div class="mb-5">
               <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                for="email"
+                class=" font-semibold mb-4 block text-lg text-gray-900 dark:text-white"
               >
-                Email address
+                Email
               </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
+              <input
+                type="email"
+                id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="name@ex.com"
+                required
+              />
             </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <Link
-                href={"/dashboard/DemarerSimulation"}
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            <div class="mb-5">
+              <label
+                for="password"
+                placeholder="password"
+                class="font-semibold mb-4 block text-lg customLabel  text-gray-900 dark:text-white"
               >
-                Sign in
-              </Link>
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
             </div>
-          </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?
+            <div class="flex items-start mb-5">
+              <div class="flex items-center h-5">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  required
+                />
+              </div>
+              <label
+                for="remember"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Remember me
+              </label>
+            </div>
+          </div>
+          {/* button */}
+          <div className="mt-8 w-full flex justify-center items-cente text-center">
+            <Link
+              className="bg-[#1e00b9] w-[250px] text-white font-bold py-2 px-4  rounded hover:bg-gray-600"
+              href="/dashboard/DemarerSimulation"
+            >
+              Login
+            </Link>
+          </div>
+          <div className="mt-4 flex items-center gap-2">
+            <span className="text-black font-medium text-sm m-0"></span>
+            Don’t have an account yet?
             <a
               href="#"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              className="text-sm font-medium text-[#B1B0B8] hover:underline"
             >
-              Start a 14 day free trial
+              Sign up now
             </a>
-          </p>
+            <span className="border-b w-1/5 md:w-1/4"></span>
+          </div>
         </div>
       </div>
-      );
     </div>
   );
 }
 
-export default page;
+export default Login;

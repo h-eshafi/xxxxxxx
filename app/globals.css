@@ -7654,3 +7654,11 @@ cursor: pointer;
   background-color: rgb(187 247 208 / var(--tw-bg-opacity)) !important;
   border: 1px solid #4e8f65 !important;
 }
+.customLabel{
+  margin-bottom: .25rem;
+  display: block;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
