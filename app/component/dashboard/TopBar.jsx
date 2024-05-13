@@ -114,7 +114,7 @@ function Page() {
             <CgProfile size={25} />
           </a>
           {/* Dropdown - User Information */}
-          <div
+          {/* <div
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown"
           >
@@ -140,7 +140,7 @@ function Page() {
               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Logout
             </a>
-          </div>
+          </div> */}
         </li>
       </ul>
     </nav>
