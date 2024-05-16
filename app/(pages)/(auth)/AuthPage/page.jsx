@@ -5,7 +5,6 @@ import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { signOut } from "next-auth/react";
 import axios from "axios";
 import { InputError } from "@/app/component/ui/InputError";
 import { InputPassword } from "@/app/component/ui/InputPassword";
@@ -24,7 +23,7 @@ function AuthPage() {
   } = useForm();
   console.log("errors", errors);
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   console.log("login session", session);
   if (session && session?.user?.role === "admin") {
     return router.push("/dashboard/admin/users");
@@ -69,7 +68,7 @@ function AuthPage() {
     <div className="flex flex-col items-center justify-center min-h-[100vh]">
       <div className="h-[93vh] w-[100vw] flex bg-white rounded-3xl shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-[80rem]">
         {/* image */}
-        <div className="flex lg:w-1/2 bg-cover justify-center items-center bg-[#1e00b9]">
+        <div className="rounded-2xl flex lg:w-1/2 bg-cover justify-center items-center bg-[#1e00b9]">
           <Image alt="logo" src={logo} width={400} height={400} />
         </div>
 
@@ -78,18 +77,21 @@ function AuthPage() {
             {/* // login */}
             <form
               onSubmit={handleSubmit(handleLog)}
-              className="w-full p-16 lg:w-1/2 overflow-y-scroll"
+              className="w-full px-14 py-10 lg:w-1/2"
             >
-              <p className="text-xl text-gray-600 text-center">Login</p>
+              <p className=" text-heading font-[600] text-2xl mb-6 text-gray-600 text-center md:text-2xl ">
+                Connexion
+              </p>
               <div className="mt-4 flex items-center justify-between">
                 <span className="border-b w-full"></span>
               </div>
               {/* email & pass */}
-              <div className="mt-4">
+              <div className="mt-12">
+                {/* email */}
                 <div className="mb-5">
                   <label
                     htmlFor="Email"
-                    className="font-semibold mb-4 block text-md text-gray-900"
+                    className="font-medium mb-4 block text-md text-gray-900"
                   >
                     Email
                   </label>
@@ -112,10 +114,11 @@ function AuthPage() {
                     <InputError message={`${errors.email.message}`} />
                   )}
                 </div>
+                {/* password */}
                 <div className="mb-5">
                   <label
                     htmlFor="Password"
-                    className="font-semibold mb-4 block text-md  text-gray-900 dark:text-white"
+                    className="font-medium mb-4 block text-md  text-gray-900 dark:text-white"
                   >
                     Password
                   </label>
@@ -144,12 +147,16 @@ function AuthPage() {
                   type="submit"
                   className="bg-[#1e00b9] w-[250px] text-white font-bold py-2 px-4 rounded hover:bg-mainBlue"
                 >
-                  Login
+                  Connexion
                 </button>
               </div>
+              <div className="mt-8 flex items-center justify-between">
+                <span className="border-b w-full"></span>
+              </div>
               <div className="mt-4 flex items-center gap-2">
-                <span className="text-black font-medium text-sm m-0"></span>
-                Don’t have an account yet?
+                <span className="text-black font-medium text-sm m-0">
+                  Vous n&apos;avez pas encore de compte ?
+                </span>
                 <button
                   type="button"
                   onClick={() => {
@@ -158,9 +165,8 @@ function AuthPage() {
                   }}
                   className="text-sm font-medium text-[#B1B0B8] hover:underline"
                 >
-                  Sign up now
+                  Inscrivez-vous maintenant.
                 </button>
-                <span className="border-b w-1/5 md:w-1/4"></span>
               </div>
             </form>
           </>
@@ -169,19 +175,69 @@ function AuthPage() {
             {/* // singup */}
             <form
               onSubmit={handleSubmit(handlereq)}
-              className=" overflow-y-scroll w-full p-16 lg:w-1/2"
+              className=" overflow-y-scroll w-full px-14 py-10 lg:w-1/2"
             >
-              <p className="text-xl text-gray-600 text-center">Register</p>
+              <p className=" text-heading font-[600] text-2xl mb-6 text-gray-600 text-center md:text-2xl">
+                S&apos;inscrire
+              </p>
               <div className="mt-4 flex items-center justify-between">
                 <span className="border-b w-full "></span>
               </div>
               {/* email & pass */}
               <div className="mt-4">
+                {/* last name */}
+                <div className="mb-5">
+                  <label
+                    htmlFor="lastName"
+                    className={`font-medium mb-4 block text-md  text-gray-900 `}
+                  >
+                    Nom
+                  </label>
+                  <input
+                    {...register("lastName", {
+                      required: "Merci de remplir ce champ",
+                    })}
+                    type="text"
+                    id="lastName"
+                    placeholder="Entrer votre nom"
+                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
+                      errors.lastName && "border-red-500 focus:outline-red-500"
+                    }`}
+                  />
+                  {errors.lastName && (
+                    <InputError message={`${errors.lastName.message}`} />
+                  )}
+                </div>
+
+                {/* first name */}
+                <div className="mb-5">
+                  <label
+                    htmlFor="firstName"
+                    className={`font-medium  mb-4 block text-md  text-gray-900 `}
+                  >
+                    Prénom
+                  </label>
+                  <input
+                    {...register("firstName", {
+                      required: "Merci de remplir ce champ",
+                    })}
+                    type="text"
+                    id="firstName"
+                    placeholder="Entrez votre prénom"
+                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
+                      errors.firstName && "border-red-500 focus:outline-red-500"
+                    }`}
+                  />
+                  {errors.firstName && (
+                    <InputError message={`${errors.firstName.message}`} />
+                  )}
+                </div>
+
                 {/* email */}
                 <div className="mb-5">
                   <label
                     htmlFor="email"
-                    className=" font-semibold mb-4 block text-md text-gray-900 "
+                    className=" font-medium mb-4 block text-md text-gray-900 "
                   >
                     Email
                   </label>
@@ -205,61 +261,13 @@ function AuthPage() {
                   )}
                 </div>
 
-                {/* first name */}
-                <div className="mb-5">
-                  <label
-                    htmlFor="firstName"
-                    className={`font-semibold mb-4 block text-md  text-gray-900 `}
-                  >
-                    First Name
-                  </label>
-                  <input
-                    {...register("firstName", {
-                      required: "Merci de remplir ce champ",
-                    })}
-                    type="text"
-                    id="firstName"
-                    placeholder="firstName"
-                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
-                      errors.firstName && "border-red-500 focus:outline-red-500"
-                    }`}
-                  />
-                  {errors.firstName && (
-                    <InputError message={`${errors.firstName.message}`} />
-                  )}
-                </div>
-
-                {/* last name */}
-                <div className="mb-5">
-                  <label
-                    htmlFor="lastName"
-                    className={`font-semibold mb-4 block text-md  text-gray-900 `}
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    {...register("lastName", {
-                      required: "Merci de remplir ce champ",
-                    })}
-                    type="text"
-                    id="lastName"
-                    placeholder="lastName"
-                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
-                      errors.lastName && "border-red-500 focus:outline-red-500"
-                    }`}
-                  />
-                  {errors.lastName && (
-                    <InputError message={`${errors.lastName.message}`} />
-                  )}
-                </div>
-
                 {/* password */}
                 <div className="mb-5">
                   <label
                     htmlFor="password"
-                    className={`font-semibold mb-4 block text-md  text-gray-900 `}
+                    className={`font-medium mb-4 block text-md  text-gray-900 `}
                   >
-                    Password
+                    Mot de passe
                   </label>
                   <input
                     {...register("password", {
@@ -272,7 +280,7 @@ function AuthPage() {
                     })}
                     type="password"
                     id="password"
-                    placeholder="password"
+                    placeholder="Mot de passe"
                     className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
                       errors.password && "border-red-500 focus:outline-red-500"
                     }`}
@@ -286,9 +294,9 @@ function AuthPage() {
                 <div className="mb-5">
                   <label
                     htmlFor="confirmPassword"
-                    className="font-semibold mb-4 block text-md  text-gray-900 dark:text-white"
+                    className="font-medium mb-4 block text-md  text-gray-900 dark:text-white"
                   >
-                    Confirm Password
+                    Confirmer le mot de passe
                   </label>
                   <input
                     {...register("confirmPassword", {
@@ -299,7 +307,7 @@ function AuthPage() {
                     })}
                     type="password"
                     id="confirmPassword"
-                    placeholder="Confirmer mot de passe"
+                    placeholder="Confirmer votre mot de passe"
                     className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ${
                       errors.confirmPassword &&
                       "border-red-500 focus:outline-red-500"
@@ -313,15 +321,15 @@ function AuthPage() {
                 {/* phone number */}
                 <div className="mb-5">
                   <label
-                    htmlFor="phoneNumber"
-                    className={`font-semibold mb-4 block text-md text-gray-900`}
+                    htmlFor="phone"
+                    className={`font-medium mb-4 block text-md text-gray-900`}
                   >
-                    Phone number:
+                    Numéro de téléphone :
                   </label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                       <svg
-                        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -331,7 +339,7 @@ function AuthPage() {
                       </svg>
                     </div>
                     <input
-                      {...register("phoneNumber", {
+                      {...register("phone", {
                         required: "Merci de remplir ce champ",
                         pattern: {
                           value: /^\d{6,}$/, // Minimum of 6 digits
@@ -340,17 +348,17 @@ function AuthPage() {
                         },
                       })}
                       type="tel"
-                      id="phoneNumber"
+                      id="phone"
+                      placeholder="01 09 75 83 51"
                       aria-describedby="helper-text-explanation"
-                      class={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
-                        errors.phoneNumber &&
-                        "border-red-500 focus:outline-red-500"
+                      className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
+                        errors.phone && "border-red-500 focus:outline-red-500"
                       }`}
                     />
                   </div>
 
-                  {errors.phoneNumber && (
-                    <InputError message={`${errors.phoneNumber.message}`} />
+                  {errors.phone && (
+                    <InputError message={`${errors.phone.message}`} />
                   )}
                 </div>
 
@@ -358,9 +366,9 @@ function AuthPage() {
                 <div className="mb-5">
                   <label
                     htmlFor="address"
-                    className={`font-semibold mb-4 block text-md text-gray-900`}
+                    className={`font-medium mb-4 block text-md text-gray-900`}
                   >
-                    Address
+                    Adresse
                   </label>
                   <textarea
                     {...register("address", {
@@ -392,20 +400,24 @@ function AuthPage() {
                   Register
                 </button>
               </div>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="text-black font-medium text-sm m-0"></span>
-                You have an account
+              <div className="mt-8 flex items-center justify-between">
+                <span className="border-b w-full"></span>
+              </div>
+              <div className="mt-4 flex items-center gap-2 ">
+                <span className="text-black font-medium text-sm m-0">
+                  Vous avez un compte.
+                </span>
+
                 <button
                   onClick={() => {
                     setIsLogin(true);
                     clearLoginError();
                   }}
-                  className="text-sm font-medium text-[#B1B0B8] hover:underline"
+                  className=" text-sm font-medium text-[#B1B0B8] hover:underline"
                   type="button"
                 >
-                  Login
+                  Connexion
                 </button>
-                <span className="border-b w-1/5 md:w-1/4"></span>
               </div>
             </form>
           </>

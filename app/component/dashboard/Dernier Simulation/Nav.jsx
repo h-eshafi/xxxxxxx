@@ -2,7 +2,7 @@ import React from "react";
 
 function Nav({ steps, currentStep }) {
   return (
-    <nav aria-label="Progress">
+    <nav aria-label="Progress" className="fixed bg-[#f6f6f6] w-full px-[2rem] pt-[1rem] py-0 ">
       <ol role="list" className="flex items-center w-full">
         {steps.map((step, index) => (
           <div key={index} className="md:flex-1">

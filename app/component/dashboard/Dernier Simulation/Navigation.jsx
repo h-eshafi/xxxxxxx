@@ -74,7 +74,7 @@ function Navigation({
   };
 
   return (
-    <div className="">
+    <div className="" style={{ padding: "6rem 4rem 0rem" }}>
       <div className="flex justify-between">
         <button
           type="button"

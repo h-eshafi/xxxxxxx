@@ -140,12 +140,15 @@ function DemarerSimulation() {
   };
 
   return (
-    <section className="gap-[2rem] inset-0 flex flex-col justify-between p-[2rem]">
+    <section className="gap-[2rem] inset-0 flex flex-col justify-between ">
       <Nav steps={steps} currentStep={currentStep} />
 
       {/* Form */}
-
-      <form className="px-[2rem]" onSubmit={handleSubmit(processForm)}>
+      <form
+        className=""
+        style={{ padding: "6rem 4rem 0rem" }}
+        onSubmit={handleSubmit(processForm)}
+      >
         {currentStep === 0 && (
           <motion.div
             initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
