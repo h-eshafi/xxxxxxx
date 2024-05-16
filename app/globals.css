@@ -4476,9 +4476,9 @@ button.bg-dark:focus {
   background-color: transparent !important;
 }
 
-.border {
+/* .border {
   border: 1px solid #e3e6f0 !important;
-}
+} */
 
 .border-top {
   border-top: 1px solid #e3e6f0 !important;
@@ -5957,67 +5957,7 @@ a:focus {
   font-weight: 800;
 }
 
-@-webkit-keyframes growIn {
-  0% {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes growIn {
-  0% {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.animated--grow-in,
-.sidebar .nav-item .collapse {
-  -webkit-animation-name: growIn;
-  animation-name: growIn;
-  -webkit-animation-duration: 200ms;
-  animation-duration: 200ms;
-  -webkit-animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1),
-    opacity cubic-bezier(0, 1, 0.4, 1);
-  animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1),
-    opacity cubic-bezier(0, 1, 0.4, 1);
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.animated--fade-in {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  -webkit-animation-duration: 200ms;
-  animation-duration: 200ms;
-  -webkit-animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
-  animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
-}
-
+ 
 .bg-gradient-primary {
   background-color: #4e73df;
   background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);

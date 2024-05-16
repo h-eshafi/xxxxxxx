@@ -1,8 +1,12 @@
+"use client";
 import { FaEye } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { FcPrint } from "react-icons/fc";
 import Image from "next/image";
 import imglog from "@/public/icons/dernierSimulation/1 niveau -08.png";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 const packageData = [
   {
     NumeroSimulations: "1",
@@ -32,9 +36,16 @@ const packageData = [
 ];
 
 function Historique() {
+  const { data: session, status } = useSession();
+  console.log(session);
+  if (!session) {
+    redirect("/login");
+  }
   return (
     <div className="w-full h-[89%] flex   flex-col rounded-sm border border-stroke px-5 pb-2.5 pt-6 shadow-default   sm:px-7.5 xl:pb-1">
       <div className="w-full overflow-x-auto overflow-y-auto  bg-white rounded-xl border border-stroke px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+        {session?.user?.email}
+        {/* {session?.user?.name} */}
         <table className="w-full table-auto">
           <thead className="bg-gray-50 rounded-2xl">
             <tr className=" bg-gray-2 text-left dark:bg-meta-4">
@@ -53,11 +64,10 @@ function Historique() {
                 Logement
               </th>
               <th className="px-4 py-4 font-medium text-black dark:text-white">
-               
                 Résultats
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-              Action
+                Action
               </th>
             </tr>
           </thead>

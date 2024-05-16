@@ -1,9 +1,13 @@
+"use client";
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import React from "react";
+import { signOut, useSession } from "next-auth/react";
 
 function Page() {
+  const { data: session, status } = useSession();
+  console.log(session);
   return (
     <nav
       className="w-full navbar navbar-expand navbar-light bg-white topbar static-top shadow "
@@ -34,7 +38,7 @@ function Page() {
           </div>
         </div>
       </form>
-
+      <button onClick={() => signOut()}>Sign out</button>
       {/* Topbar Navbar */}
       <ul className="navbar-nav ml-auto">
         {/* Nav Item - Search Dropdown (Visible Only XS) */}
@@ -103,8 +107,8 @@ function Page() {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              Douglas McGee
+            <span className="mr-2 text-gray-600   md:inline-block  text-base font-medium capitalize">
+              {session?.user?.name ? session?.user?.name : "member name"}
             </span>
             {/* <Image
               className="img-profile rounded-circle"

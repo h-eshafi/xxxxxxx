@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import Nav from "../../../component/dashboard/Dernier Simulation/Nav";
+import Nav from "../../../../component/dashboard/Dernier Simulation/Nav";
 import carre from "@/public/icons/dernierSimulation/ICON QuickAudit-01.png";
 import rectangle from "@/public/icons/dernierSimulation/ICON QuickAudit-02.png";
 import formaU from "@/public/icons/dernierSimulation/ICON QuickAudit-04.png";
@@ -239,7 +239,7 @@ function DemarerSimulation() {
                   {FormeDuLogement.map((option, index) => (
                     <li
                       key={index}
-                      className={`text-center py-[12px] px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                      className={`text-center py-[12px] px-[8px] border border-solid border-[#e3e6f0] h-[125px] flex w-[200px] ${
                         selectedButton === option.text
                           ? "activeGreen"
                           : "bg-white"
@@ -272,7 +272,7 @@ function DemarerSimulation() {
                   {Mitoyenneté.map((option, index) => (
                     <li
                       key={index}
-                      className={`text-center py-[12px] px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                      className={`text-center py-[12px] px-[8px] border border-solid border-[#e3e6f0] h-[125px] flex w-[200px] ${
                         selectedMitoyennete === option.text
                           ? "activeGreen"
                           : "bg-white"
@@ -305,7 +305,7 @@ function DemarerSimulation() {
                   {NombreDeNiveauxHabitables.map((option, index) => (
                     <li
                       key={index}
-                      className={`py-[12px] text-center px-[8px] border border-solid border-mainBlue h-[125px] flex w-[200px] ${
+                      className={`py-[12px] text-center px-[8px] border border-solid border-[#e3e6f0] h-[125px] flex w-[200px] ${
                         SelectedNombreDeNiveauxHabitables === option.text
                           ? "activeGreen"
                           : "bg-white"

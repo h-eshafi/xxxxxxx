@@ -2,8 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
-function SideBar() {
+async function SideBar() {
+  const session = await getServerSession(authOption);
+  console.log("session ", session);
+  console.log("side bar ==", session?.user?.role);
+  // if (session && session?.user?.alreadyEntered) {
+  //   redirect("/");
+  // }
   return (
     <ul
       style={{ position: "sticky", top: "0", bottom: "0" }}
@@ -25,40 +33,74 @@ function SideBar() {
 
       <hr className="sidebar-divider" />
 
-      <li className="nav-item">
-        <Link
-          className="nav-link collapsed"
-          href="/dashboard/DemarerSimulation"
-        >
-          <span>Démarrer la simulation</span>
-        </Link>
-      </li>
+      {session?.user?.role === "Member" && (
+        <>
+          <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/member/DemarerSimulation"
+            >
+              <span>Démarrer la simulation</span>
+            </Link>
+          </li>
 
-      <hr className="sidebar-divider" />
+          <hr className="sidebar-divider" />
 
-      <li className="nav-item">
-        <Link className="nav-link collapsed" href="/dashboard/Historique">
-          <span>Historique</span>
-        </Link>
-      </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/member/Historique"
+            >
+              <span>Historique</span>
+            </Link>
+          </li>
 
-      <hr className="sidebar-divider" />
+          <hr className="sidebar-divider" />
 
-      <li className="nav-item">
-        <Link className="nav-link collapsed" href="/dashboard/Profile">
-          <span>Profile</span>
-        </Link>
-      </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/member/Profile"
+            >
+              <span>Profile</span>
+            </Link>
+          </li>
 
-      <hr className="sidebar-divider" />
+          <hr className="sidebar-divider" />
 
-      <li className="nav-item">
-        <Link className="nav-link collapsed" href="/dashboard/paiement">
-          <span>Abonnement</span>
-        </Link>
-      </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/member/paiement"
+            >
+              <span>Abonnement</span>
+            </Link>
+          </li>
+          <hr className="sidebar-divider d-none d-md-block" />
+        </>
+      )}
+      {session?.user?.role === "admin" && (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link collapsed" href="/dashboard/admin/users">
+              <span>users</span>
+            </Link>
+          </li>
 
-      <hr className="sidebar-divider d-none d-md-block" />
+          <hr className="sidebar-divider" />
+
+          <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/admin/paiement"
+            >
+              <span>paiement</span>
+            </Link>
+          </li>
+
+          <hr className="sidebar-divider d-none d-md-block" />
+        </>
+      )}
     </ul>
   );
 }
