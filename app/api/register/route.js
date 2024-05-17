@@ -13,7 +13,6 @@ export async function POST(req, res) {
   const exist = await prisma.user.findUnique({
     where: {
       email: email,
-    
     }
   });
   if (exist) {

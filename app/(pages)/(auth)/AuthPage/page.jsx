@@ -349,7 +349,7 @@ function AuthPage() {
                       })}
                       type="tel"
                       id="phone"
-                      placeholder="01 09 75 83 51"
+                      placeholder="33 7 60 50 60 60"
                       aria-describedby="helper-text-explanation"
                       className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
                         errors.phone && "border-red-500 focus:outline-red-500"

@@ -171,7 +171,7 @@ function DemarerSimulation() {
                     <select
                       id="CodeDepartement"
                       {...register("CodeDepartement")}
-                      className=" bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className=" bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg   focus:border-gray-700 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option
                         value=""
@@ -204,7 +204,7 @@ function DemarerSimulation() {
                     <select
                       id="AnneConstruction"
                       {...register("AnneConstruction")}
-                      className="bg-white border border-[#b7b9cc] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
+                      className="bg-white border border-[#b7b9cc] focus:border-gray-700  text-gray-900 text-sm rounded-lg block w-full p-2.5 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option
                         value=""

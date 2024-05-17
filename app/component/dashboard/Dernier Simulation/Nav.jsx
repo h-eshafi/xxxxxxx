@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Nav({ steps, currentStep }) {
+  const [showShadow, setShowShadow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowShadow(window.scrollY > 100); // Show shadow when scrolled more than 100px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav aria-label="Progress" className="fixed bg-[#f6f6f6] w-full px-[2rem] pt-[1rem] py-0 ">
+    <nav
+      aria-label="Progress"
+      className={`fixed bg-[#f6f6f6] w-full px-[2rem] pt-[1rem] py-1 transition-shadow duration-300 ${
+        showShadow ? "shadow-md" : ""
+      }`}
+    >
       <ol role="list" className="flex items-center w-full">
         {steps.map((step, index) => (
           <div key={index} className="md:flex-1">
@@ -10,7 +29,7 @@ function Nav({ steps, currentStep }) {
               <li className="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-green-200 after:border-4 after:inline-block dark:after:border-blue-800">
                 <span className="flex items-center justify-center w-10 h-10 bg-green-200 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
                   <svg
-                    className="w-3.5 h-3.5 text-green-500 dark:text-green-400 lg:h-4  "
+                    className="w-3.5 h-3.5 text-green-500 dark:text-green-400 lg:h-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -27,8 +46,8 @@ function Nav({ steps, currentStep }) {
                 </span>
               </li>
             ) : currentStep === index ? (
-              <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100  after:border-4 after:inline-block">
-                <span className="flex items-center justify-center w-10 h-10 bg-blue-100  rounded-full lg:h-12 lg:w-12 shrink-0">
+              <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block">
+                <span className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 shrink-0">
                   <svg
                     className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100"
                     aria-hidden="true"
@@ -41,8 +60,8 @@ function Nav({ steps, currentStep }) {
                 </span>
               </li>
             ) : (
-              <li className="flex items-center w-full after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100  after:border-4 after:inline-block ">
-                <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0 ">
+              <li className="flex items-center w-full after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block">
+                <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
                   <svg
                     className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100"
                     aria-hidden="true"
