@@ -9,11 +9,11 @@ import rectangle from "@/public/icons/dernierSimulation/ICON QuickAudit-02.png";
 import formaU from "@/public/icons/dernierSimulation/ICON QuickAudit-04.png";
 import formaL from "@/public/icons/dernierSimulation/ICON QuickAudit-03.png";
 import mitoyenne1 from "@/public/icons/dernierSimulation/Mitoyenne sur 2 côtés-05.png";
-import mitoyenne2 from "@/public/icons/dernierSimulation/ mitoyenne sur un côté-06.png";
-import mitoyenne3 from "@/public/icons/dernierSimulation/Indépendante (4 façades)-07.png";
+import mitoyenne2 from "@/public/icons/dernierSimulation/Mitoyenne sur 2 côtés-05.png";
+import mitoyenne3 from "@/public/icons/dernierSimulation/Mitoyenne sur 2 côtés-05.png";
 import niv1 from "@/public/icons/dernierSimulation/1 niveau -08.png";
 import niv2 from "@/public/icons/dernierSimulation/2 niveau -09.png";
-import niv3 from "@/public/icons/dernierSimulation/ 3 niveaux-10.png";
+import niv3 from "@/public/icons/dernierSimulation/3 niveaux-10.png";
 import Navigation from "@/app/component/dashboard/Dernier Simulation/Navigation";
 
 const steps = [
