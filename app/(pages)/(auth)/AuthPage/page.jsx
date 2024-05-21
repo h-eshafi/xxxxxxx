@@ -8,6 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 import axios from "axios";
 import { InputError } from "@/app/component/ui/InputError";
 import { InputPassword } from "@/app/component/ui/InputPassword";
+import Link from "next/link";
 
 function AuthPage() {
   const [loginError, setLoginError] = useState("");
@@ -153,20 +154,16 @@ function AuthPage() {
               <div className="mt-8 flex items-center justify-between">
                 <span className="border-b w-full"></span>
               </div>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="text-black font-medium text-sm m-0">
-                  Vous n&apos;avez pas encore de compte ?
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsLogin(false);
-                    clearLoginError();
-                  }}
-                  className="text-sm font-medium text-[#B1B0B8] hover:underline"
+
+              <div className="pt-5 flex flex-col text-slate-600 gap-1 md:text-base text-sm">
+                <p className="m-0"> Vous n'êtes pas membre de Quickaudit?</p>
+                <Link
+                  href="https://energyz.fr/"
+                  target="_blank"
+                  className="underline w-fit hover:text-slate-700 duration-300"
                 >
-                  Inscrivez-vous maintenant.
-                </button>
+                  en savoir plus sur nous
+                </Link>
               </div>
             </form>
           </>

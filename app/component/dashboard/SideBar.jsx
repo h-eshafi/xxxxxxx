@@ -4,14 +4,13 @@ import React from "react";
 import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
+import dynamic from "next/dynamic";
 
 async function SideBar() {
   const session = await getServerSession(authOption);
   console.log("session ", session);
   console.log("side bar ==", session?.user?.role);
-  // if (session && session?.user?.alreadyEntered) {
-  //   redirect("/");
-  // }
+
   return (
     <ul
       style={{ position: "sticky", top: "0", bottom: "0" }}
@@ -82,6 +81,15 @@ async function SideBar() {
       {session?.user?.role === "admin" && (
         <>
           <li className="nav-item">
+            <Link
+              className="nav-link collapsed"
+              href="/dashboard/admin/simulations"
+            >
+              <span>Simulations</span>
+            </Link>
+          </li>
+          <hr className="sidebar-divider" />
+          <li className="nav-item">
             <Link className="nav-link collapsed" href="/dashboard/admin/users">
               <span>users</span>
             </Link>
@@ -104,5 +112,4 @@ async function SideBar() {
     </ul>
   );
 }
-
-export default SideBar;
+export default dynamic(() => Promise.resolve(SideBar), { ssr: false });

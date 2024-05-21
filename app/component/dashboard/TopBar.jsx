@@ -1,13 +1,40 @@
-"use client";
 import { IoIosNotifications } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
 import React from "react";
-import { signOut, useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
+import { UserDropDown } from "../ui/UserDropDown";
+import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-function Page() {
-  const { data: session, status } = useSession();
-  console.log(session);
+const getMember = async (id) => {
+  try {
+    const member = await prisma.user.findFirst({
+      where: { id },
+      select: {
+        firstName: true,
+        lastName: true,
+        image: true,
+        email: true,
+        role: true,
+      },
+    });
+
+    return member;
+  } catch (e) {
+    // return redirect("/AuthPage");
+  }
+};
+async function TopBar() {
+  const session = await getServerSession(authOption);
+  console.log("session ", session);
+  console.log("side bar ==", session?.user?.role);
+
+  const { id } = session.user;
+  console.log("id== ", id);
+  const member = await getMember(id);
+  console.log("member header", member);
   return (
     <nav
       className="w-full navbar navbar-expand navbar-light bg-white topbar static-top shadow "
@@ -38,7 +65,6 @@ function Page() {
           </div>
         </div>
       </form>
-      <button onClick={() => signOut()}>Sign out</button>
       {/* Topbar Navbar */}
       <ul className="navbar-nav ml-auto">
         {/* Nav Item - Search Dropdown (Visible Only XS) */}
@@ -107,48 +133,12 @@ function Page() {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span className="mr-2 text-gray-600   md:inline-block  text-base font-medium capitalize">
-              {session?.user?.name ? session?.user?.name : "member name"}
-            </span>
-            {/* <Image
-              className="img-profile rounded-circle"
-              src="/img/undraw_profile.svg"
-              alt="Profile"
-            /> */}
-            <CgProfile size={25} />
+            <UserDropDown userInfo={member} />
           </a>
-          {/* Dropdown - User Information */}
-          {/* <div
-            className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-            aria-labelledby="userDropdown"
-          >
-            <a className="dropdown-item" href="#">
-              <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-              Profile
-            </a>
-            <a className="dropdown-item" href="#">
-              <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-              Settings
-            </a>
-            <a className="dropdown-item" href="#">
-              <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-              Activity Log
-            </a>
-            <div className="dropdown-divider"></div>
-            <a
-              className="dropdown-item"
-              href="#"
-              data-toggle="modal"
-              data-target="#logoutModal"
-            >
-              <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              Logout
-            </a>
-          </div> */}
         </li>
       </ul>
     </nav>
   );
 }
 
-export default Page;
+export default dynamic(() => Promise.resolve(TopBar), { ssr: false });
