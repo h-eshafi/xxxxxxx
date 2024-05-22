@@ -13,23 +13,23 @@ function Navigation({
     // Check if all required fields are filled
     const currentFields = steps[currentStep].fields;
     const filled = currentFields.every((field) => {
-      // Check if the current field is "Année Isolation murs"
-      // and if the user selected "Non" for "Vos murs sont-ils isolés ?
+      // Check if the current field is "AnneeIsolationmurs"
+      // and if the user selected "Non" for "VosMursSontIlsIsoles
       if (
-        // Skip checking "Année Isolation murs" when "Non" is selected
+        // Skip checking "AnneeIsolationmurs" when "Non" is selected
         // and consider it as filled
         // Step 2
-        (field === "Année Isolation murs" &&
-          watch("Vos murs sont-ils isolés ?") === "Non") ||
-        (field === "Année Isolation Plancher bas" &&
-          watch("Plancher bas isolé ?") === "Non") ||
-        (field === "Année Isolation Plancher Haut" &&
-          watch("Plancher haut isolé ?") === "Non") ||
+        (field === "AnneeIsolationmurs" &&
+          watch("VosMursSontIlsIsoles") === "Non") ||
+        (field === "AnneeIsolationPlancherBas" &&
+          watch("PlancherBasIsole") === "Non") ||
+        (field === "AnneeIsolationPlancherHaut" &&
+          watch("PlancherHautIsole") === "Non") ||
         // Step 3
-        (field === "Type Energie de chauffage appoint" &&
-          watch("Avezvous un systeme de chauffage dappoint?") === "Non") ||
-        (field === "Systeme de chauffage appoint" &&
-          watch("Avezvous un systeme de chauffage dappoint?") === "Non")
+        (field === "TypeEnergieDeChauffageAppoint" &&
+          watch("AvezvousUnSystemeDeChauffageDappoint") === "Non") ||
+        (field === "SystemeDeChauffageAppoint" &&
+          watch("AvezvousUnSystemeDeChauffageDappoint") === "Non")
       ) {
         // For other fields or when "Non" is not selected,
         // check if the current field has been filled using watch(field)
