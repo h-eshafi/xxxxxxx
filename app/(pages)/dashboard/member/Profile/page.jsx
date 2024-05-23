@@ -53,7 +53,7 @@ function Profile() {
 
           {/* form */}
 
-          <form className="w-full md:w-[60%] rounded-3xl bg-white shadow-md p-4 flex flex-col justify-between border-softGray border-[1px]">
+          <form className=" -z-[1] w-full md:w-[60%] rounded-3xl bg-white shadow-md p-4 flex flex-col justify-between border-softGray border-[1px]">
             <p className=" text-gray-700 font-normal p-4 text-base m-0">
               Les informations peuvent être modifiées
             </p>

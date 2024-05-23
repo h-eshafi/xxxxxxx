@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 const packageData = [
   {
     nom: "yassine",
-    prenom: "idtest",
+    prenom: "test",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 0,
@@ -18,7 +18,7 @@ const packageData = [
   },
   {
     nom: "yassine",
-    prenom: "idtest",
+    prenom: "test",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 4,
@@ -28,7 +28,7 @@ const packageData = [
   },
   {
     nom: "yassine",
-    prenom: "idtest",
+    prenom: "test",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 2,
@@ -38,7 +38,7 @@ const packageData = [
   },
   {
     nom: "yassine",
-    prenom: "idtest",
+    prenom: "test",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 3,
@@ -76,7 +76,7 @@ function Users() {
                 crédits
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-                vérification de l'E-mail
+                action
               </th>
             </tr>
           </thead>
@@ -94,17 +94,20 @@ function Users() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p className="text-black dark:text-white">{item.role}</p>
+                  <p className="text-black dark:text-white">{item.email}</p>
                 </td>
 
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p>{item.email}</p>
+                  <p>{item.phone}</p>
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   test
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p>{item.role}</p>
+                  <p>{item.phone}</p>
+                </td>
+                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                  <p>{item.result}</p>
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">edit</div>

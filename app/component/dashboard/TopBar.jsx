@@ -37,7 +37,7 @@ async function TopBar() {
   console.log("member header", member);
   return (
     <nav
-      className="w-full navbar navbar-expand navbar-light bg-white topbar static-top shadow "
+      className="w-full navbar navbar-expand navbar-light bg-white topbar static-top shadow"
       style={{ position: "sticky", top: "0" }}
     >
       {/* Sidebar Toggle (Topbar) */}
