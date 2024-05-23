@@ -18,7 +18,7 @@ function Nav({ steps, currentStep }) {
   return (
     <nav
       aria-label="Progress"
-      className={`fixed bg-[#f6f6f6] w-full px-[2rem] pt-[1rem] py-1 transition-shadow duration-300 ${
+      className={` -z-[2] fixed bg-[#f6f6f6] w-full px-[2rem] pt-[1rem] py-1 transition-shadow duration-300 ${
         showShadow ? "shadow-md" : ""
       }`}
     >

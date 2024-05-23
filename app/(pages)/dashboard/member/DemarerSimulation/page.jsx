@@ -30,7 +30,6 @@ const steps = [
   {
     id: "Step 2",
     fields: [
-      
       "VosMursSontIlsIsoles",
       "TypeDuPlancherBas",
       "PlancherBasIsole",
@@ -151,12 +150,12 @@ function DemarerSimulation() {
   };
 
   return (
-    <section className="gap-[2rem] inset-0 flex flex-col justify-between ">
+    <section className=" relative -z-[3]  gap-[2rem] inset-0 flex flex-col justify-between ">
       <Nav steps={steps} currentStep={currentStep} />
 
       {/* Form */}
       <form
-        className=""
+        className="-z-[3]"
         style={{ padding: "6rem 4rem 0rem" }}
         onSubmit={handleSubmit(processForm)}
       >
@@ -522,9 +521,7 @@ function DemarerSimulation() {
                       >
                         <option
                           value=""
-                          disabled={
-                            watch("AnneeIsolationPlancherBas") === ""
-                          }
+                          disabled={watch("AnneeIsolationPlancherBas") === ""}
                         >
                           Sélectionnez une réponse
                         </option>
@@ -626,9 +623,7 @@ function DemarerSimulation() {
                       >
                         <option
                           value=""
-                          disabled={
-                            watch("AnneeIsolationPlancherHaut") === ""
-                          }
+                          disabled={watch("AnneeIsolationPlancherHaut") === ""}
                         >
                           Sélectionnez une réponse
                         </option>
