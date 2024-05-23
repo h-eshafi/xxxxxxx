@@ -23,9 +23,10 @@ async function SideBar() {
         </div>
       </a>
 
-      <li className="nav-item active">
-        <i className="fas fa-fw fa-tachometer-alt"></i>
-        <span>Tableau de bord</span>
+      <li className="nav-item">
+        <a className="nav-link text-white " href="#">
+          <span>Tableau de bord</span>
+        </a>
       </li>
 
       <hr className="sidebar-divider" />
