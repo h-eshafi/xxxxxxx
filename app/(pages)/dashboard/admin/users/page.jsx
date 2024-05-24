@@ -1,44 +1,47 @@
-import { FaEye } from "react-icons/fa";
-import { FiEdit } from "react-icons/fi";
-import { FcPrint } from "react-icons/fc";
-import Image from "next/image";
-import imglog from "@/public/icons/dernierSimulation/1 niveau -08.png";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const packageData = [
   {
-    nom: "yassine",
-    prenom: "test",
+    nom: "name",
+    prenom: "lastname",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 0,
     date: "Jan 13, 2023 a 10h34",
-    role: "Member",
+    role: "Admin",
+    result: "test",
+
     email_verification: true,
   },
   {
-    nom: "yassine",
-    prenom: "test",
+    nom: "name",
+    prenom: "lastname",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 4,
+    result: "test",
+
     date: "Jan 13, 2023 a 10h34",
     role: "Member",
     email_verification: true,
   },
   {
-    nom: "yassine",
-    prenom: "test",
+    nom: "name",
+    prenom: "lastname",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 2,
+    result: "test",
+
     date: "Jan 13, 2023 a 10h34",
     role: "Member",
     email_verification: true,
   },
   {
-    nom: "yassine",
-    prenom: "test",
+    nom: "name",
+    prenom: "lastname",
+    result: "test",
     phone: "03 066 666 666",
     email: "test@test.com",
     credits: 3,
@@ -66,15 +69,23 @@ function Users() {
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 Email
               </th>
+
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 numéro de telephone
               </th>
+
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 Résultats
               </th>
+
+              <th className="px-4 py-4 font-medium text-black dark:text-white">
+                Role
+              </th>
+
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                 crédits
               </th>
+
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                 action
               </th>
@@ -84,15 +95,13 @@ function Users() {
             {packageData.map((item, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-                  <p className="font-medium text-black dark:text-white">
-                    {item.nom}
-                  </p>
+                  <p className=" text-black dark:text-white">{item.nom}</p>
                 </td>
+
                 <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-                  <p className="font-medium text-black dark:text-white">
-                    {item.prenom}
-                  </p>
+                  <p className=" text-black dark:text-white">{item.prenom}</p>
                 </td>
+
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p className="text-black dark:text-white">{item.email}</p>
                 </td>
@@ -100,20 +109,29 @@ function Users() {
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p>{item.phone}</p>
                 </td>
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  test
-                </td>
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p>{item.phone}</p>
-                </td>
+
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p>{item.result}</p>
                 </td>
+
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <div className="flex items-center space-x-3.5">edit</div>
-                  <div className="flex items-center space-x-3.5 text-red-500">
-                    supprimer
-                  </div>
+                  <select name="" id="">
+                    <option>Admin</option>
+                    <option>User</option>
+                  </select>
+                </td>
+
+                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                  <p>{item.credits}</p>
+                </td>
+
+                <td className="flex border-b gap-3 border-[#eee] px-4 py-5 dark:border-strokedark">
+                  <Link className="  text-base" href="#">
+                    <span>modifier</span>
+                  </Link>
+                  <Link className="  text-base text-red-500" href="#">
+                    <span>supprimer</span>
+                  </Link>
                 </td>
               </tr>
             ))}

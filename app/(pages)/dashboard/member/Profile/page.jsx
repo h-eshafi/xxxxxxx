@@ -17,7 +17,7 @@ const user = {
 function Profile() {
   return (
     <>
-      <div className="flex justify-center items-center flex-col h-[89%]">
+      <div className="-z-[1] flex justify-center items-center flex-col h-[89%]">
         {/* <h4 className="w-full px-4">Profile</h4> */}
         {/* profile */}
         <div className="flex flex-col md:flex-row gap-4 p-8 w-full">
@@ -53,7 +53,7 @@ function Profile() {
 
           {/* form */}
 
-          <form className=" -z-[1] w-full md:w-[60%] rounded-3xl bg-white shadow-md p-4 flex flex-col justify-between border-softGray border-[1px]">
+          <form className="  w-full md:w-[60%] rounded-3xl bg-white shadow-md p-4 flex flex-col justify-between border-softGray border-[1px]">
             <p className=" text-gray-700 font-normal p-4 text-base m-0">
               Les informations peuvent être modifiées
             </p>
