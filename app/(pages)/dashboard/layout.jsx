@@ -1,4 +1,4 @@
-import SideBar from "@/app/component/dashboard/SideBar";
+import SideBar from "@/app/component/dashboard/SideBar/SideBar";
 import TopBar from "@/app/component/dashboard/TopBar";
 
 const Layout = ({ children }) => {

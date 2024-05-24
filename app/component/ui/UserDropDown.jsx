@@ -65,7 +65,7 @@ export function UserDropDown({ userInfo }) {
           <h3 className="font-medium capitalize">{firstName}</h3>
           <span className="text-xs lowercase">{email}</span>
 
-          <Link href={`/dashboard/member/Profile`} className="w-full">
+          <Link href="#" className="w-full">
             <button
               className="my-5 w-full h-[45px] bg-[rgba(255,255,255,0.1)] border border-white rounded-md shadow-md transition hover:shadow-xl text-white"
               onClick={() => setIsOpen(false)}

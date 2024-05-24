@@ -57,11 +57,12 @@ function Users() {
       <div className="w-full overflow-x-auto overflow-y-auto  bg-white rounded-xl border border-stroke px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
         <div className=" flex justify-between items-centers">
           <p className="text-2xl font-medium px-4 py-3">Membres (4) </p>
-          <Link href="#">
-            <button
-              type="button"
-              className=" py-2.5 px-5 mb-2 text-sm font-medium bg-slate-50 hover:bg-slate-100 focus:outline-none  rounded-2xl"
-            >
+          <Link
+            href="/dashboard/admin/new"
+            className="flex justify-center items-center py-2 px-5 me-2 mb-2 text-sm font-medium text-mainBlue focus:outline-none h-[45px]  rounded-2xl border border-gray-200 bg-slate-50 hover:bg-slate-100 hover:to-blue-800 "
+          >
+            <span className="text-2xl pr-2">+</span>
+            <button type="button" class="">
               Ajouter un membre
             </button>
           </Link>
@@ -138,11 +139,11 @@ function Users() {
                 </td>
 
                 <td className="flex border-b gap-3 border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <Link className="  text-base" href="#">
+                  <Link className="text-base text-blue-600 hover:underline" href="#">
                     <span>modifier</span>
                   </Link>
                   <Link
-                    className="  text-base text-red-500 hover:text-red-600"
+                    className="  text-base text-red-500 hover:text-red-600 hover:underline "
                     href="#"
                   >
                     <span>supprimer</span>

@@ -1,15 +1,13 @@
+"use client";
+import React from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
-import { authOption } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
-import dynamic from "next/dynamic";
 
-async function SideBar() {
-  const session = await getServerSession(authOption);
-  console.log("session ", session);
-  console.log("side bar ==", session?.user?.role);
+function Bar({ session }) {
+  const router = usePathname();
+  console.log(router);
 
   return (
     <ul
@@ -77,11 +75,14 @@ async function SideBar() {
           <hr className="sidebar-divider d-none d-md-block" />
         </>
       )}
+      {/* admin */}
       {session?.user?.role === "admin" && (
         <>
           <li className="nav-item">
             <Link
-              className="nav-link collapsed"
+              className={`nav-link  ${
+                router === "/dashboard/admin/simulations" ? " text-white" : ""
+              }`}
               href="/dashboard/admin/simulations"
             >
               <span>Simulations</span>
@@ -89,8 +90,13 @@ async function SideBar() {
           </li>
           <hr className="sidebar-divider" />
           <li className="nav-item">
-            <Link className="nav-link collapsed" href="/dashboard/admin/users">
-              <span>users</span>
+            <Link
+              className={`nav-link  ${
+                router === "/dashboard/admin/users" ? " text-white" : ""
+              }`}
+              href="/dashboard/admin/users"
+            >
+              <span>Membres</span>
             </Link>
           </li>
 
@@ -111,4 +117,5 @@ async function SideBar() {
     </ul>
   );
 }
-export default dynamic(() => Promise.resolve(SideBar), { ssr: false });
+
+export default Bar;

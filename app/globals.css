@@ -131,26 +131,26 @@ sup {
   top: -0.5em;
 }
 
-a {
+/* a {
   color: #4e73df;
   text-decoration: none;
   background-color: transparent;
-}
+} */
 
-a:hover {
+/* a:hover {
   color: #224abe;
   text-decoration: underline;
-}
+} */
 
-a:not([href]):not([class]) {
+/* a:not([href]):not([class]) {
   color: inherit;
   text-decoration: none;
-}
+} */
 
-a:not([href]):not([class]):hover {
+/* a:not([href]):not([class]):hover {
   color: inherit;
   text-decoration: none;
-}
+} */
 
 pre,
 code,
