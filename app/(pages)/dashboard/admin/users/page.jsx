@@ -55,6 +55,18 @@ function Users() {
   return (
     <div className="w-full h-[89%] flex   flex-col rounded-sm border border-stroke px-5 pb-2.5 pt-6 shadow-default   sm:px-7.5 xl:pb-1">
       <div className="w-full overflow-x-auto overflow-y-auto  bg-white rounded-xl border border-stroke px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+        <div className=" flex justify-between items-centers">
+          <p className="text-2xl font-medium px-4 py-3">Membres (4) </p>
+          <Link href="#">
+            <button
+              type="button"
+              className=" py-2.5 px-5 mb-2 text-sm font-medium bg-slate-50 hover:bg-slate-100 focus:outline-none  rounded-2xl"
+            >
+              Ajouter un membre
+            </button>
+          </Link>
+        </div>
+
         <table className="w-full table-auto">
           <thead className="bg-gray-50 rounded-2xl">
             <tr className=" bg-gray-2 text-left dark:bg-meta-4">
@@ -130,7 +142,7 @@ function Users() {
                     <span>modifier</span>
                   </Link>
                   <Link
-                    className="  text-base text-red-500 hover:text-red-300"
+                    className="  text-base text-red-500 hover:text-red-600"
                     href="#"
                   >
                     <span>supprimer</span>
