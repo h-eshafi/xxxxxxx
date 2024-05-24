@@ -58,35 +58,35 @@ function Users() {
         <table className="w-full table-auto">
           <thead className="bg-gray-50 rounded-2xl">
             <tr className=" bg-gray-2 text-left dark:bg-meta-4">
-              <th className="px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
                 Nom
               </th>
 
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
                 Prénom
               </th>
 
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
                 Email
               </th>
 
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
                 numéro de telephone
               </th>
 
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
                 Résultats
               </th>
 
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
                 Role
               </th>
 
-              <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                 crédits
               </th>
 
-              <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
+              <th className="text-center min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                 action
               </th>
             </tr>
@@ -94,34 +94,34 @@ function Users() {
           <tbody>
             {packageData.map((item, key) => (
               <tr key={key}>
-                <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                <td className="text-center  border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                   <p className=" text-black dark:text-white">{item.nom}</p>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                <td className="text-center border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                   <p className=" text-black dark:text-white">{item.prenom}</p>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                <td className="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p className="text-black dark:text-white">{item.email}</p>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                <td className="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p>{item.phone}</p>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                <td className="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p>{item.result}</p>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                <td className="text-center  border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <select name="" id="">
                     <option>Admin</option>
                     <option>User</option>
                   </select>
                 </td>
 
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                <td className="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p>{item.credits}</p>
                 </td>
 
@@ -129,7 +129,10 @@ function Users() {
                   <Link className="  text-base" href="#">
                     <span>modifier</span>
                   </Link>
-                  <Link className="  text-base text-red-500" href="#">
+                  <Link
+                    className="  text-base text-red-500 hover:text-red-300"
+                    href="#"
+                  >
                     <span>supprimer</span>
                   </Link>
                 </td>
