@@ -62,9 +62,7 @@ function Users() {
             className="flex justify-center items-center py-2 px-5 me-2 mb-2 text-sm font-medium text-mainBlue focus:outline-none h-[45px]  rounded-2xl border border-gray-200 bg-slate-50 hover:bg-slate-100 hover:to-blue-800 "
           >
             <span className="text-2xl pr-2">+</span>
-            <button type="button" class="">
-              Ajouter un membre
-            </button>
+            <span className="">Ajouter un membre</span>
           </Link>
         </div>
 

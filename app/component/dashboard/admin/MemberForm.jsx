@@ -102,10 +102,10 @@ function MemberForm() {
                 >
                   Numéro de téléphone
                 </label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                <div className="relative">
+                  <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                     <svg
-                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -127,7 +127,7 @@ function MemberForm() {
                     placeholder="03 000 000 00"
                     id="phoneNumber"
                     aria-describedby="helper-text-explanation"
-                    class={`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
+                    className={`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
                       errors.phoneNumber &&
                       "border-red-500 focus:outline-red-500"
                     }`}

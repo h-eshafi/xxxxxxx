@@ -87,17 +87,9 @@ async function TopBar() {
 
         {/* Nav Item - User Information */}
         <li className="nav-item dropdown no-arrow">
-          <a
-            className="nav-link dropdown-toggle"
-            href="#"
-            id="userDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <div className="nav-link dropdown-toggle">
             <UserDropDown userInfo={member} />
-          </a>
+          </div>
         </li>
       </ul>
     </nav>

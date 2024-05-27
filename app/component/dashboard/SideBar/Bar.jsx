@@ -7,7 +7,6 @@ import logo from "@/public/icons/dernierSimulation/QuickAudit-04.png";
 
 function Bar({ session }) {
   const router = usePathname();
-  console.log(router);
 
   return (
     <ul
