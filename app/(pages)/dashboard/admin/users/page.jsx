@@ -84,11 +84,7 @@ function Users() {
               </th>
 
               <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
-                numéro de telephone
-              </th>
-
-              <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
-                Résultats
+                Numéro de téléphone
               </th>
 
               <th className="text-center px-4 py-4 font-medium text-black dark:text-white">
@@ -96,11 +92,11 @@ function Users() {
               </th>
 
               <th className="text-center min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-                crédits
+                Crédits
               </th>
 
               <th className="text-center min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-                action
+                Action
               </th>
             </tr>
           </thead>
@@ -123,10 +119,6 @@ function Users() {
                   <p>{item.phone}</p>
                 </td>
 
-                <td className="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p>{item.result}</p>
-                </td>
-
                 <td className="text-center  border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <select name="" id="">
                     <option>Admin</option>
@@ -139,7 +131,10 @@ function Users() {
                 </td>
 
                 <td className="flex border-b gap-3 border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <Link className="text-base text-blue-600 hover:underline" href="#">
+                  <Link
+                    className="text-base text-blue-600 hover:underline"
+                    href="#"
+                  >
                     <span>modifier</span>
                   </Link>
                   <Link

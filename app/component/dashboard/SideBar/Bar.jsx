@@ -78,6 +78,7 @@ function Bar({ session }) {
       {/* admin */}
       {session?.user?.role === "admin" && (
         <>
+          {/* simulation */}
           <li className="nav-item">
             <Link
               className={`nav-link  ${
@@ -89,11 +90,12 @@ function Bar({ session }) {
             </Link>
           </li>
           <hr className="sidebar-divider" />
+          {/* users */}
           <li className="nav-item">
             <Link
               className={`nav-link  ${
                 router === "/dashboard/admin/users" ? " text-white" : ""
-              }`}
+              }  ${router === "/dashboard/admin/new" ? " text-white" : ""}`}
               href="/dashboard/admin/users"
             >
               <span>Membres</span>
@@ -101,13 +103,15 @@ function Bar({ session }) {
           </li>
 
           <hr className="sidebar-divider" />
-
+          {/* paiement */}
           <li className="nav-item">
             <Link
-              className="nav-link collapsed"
+              className={`nav-link  ${
+                router === "/dashboard/admin/paiement" ? " text-white" : ""
+              }`}
               href="/dashboard/admin/paiement"
             >
-              <span>paiement</span>
+              <span>Paiement</span>
             </Link>
           </li>
 

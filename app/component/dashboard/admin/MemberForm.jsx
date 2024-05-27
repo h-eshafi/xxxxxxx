@@ -1,21 +1,9 @@
 "use client";
 import React from "react";
 import { Container } from "../../ui/Container";
-import { InputLabel } from "../../ui/InputLabel";
 import { useForm } from "react-hook-form";
 import { InputError } from "../../ui/InputError";
 import Link from "next/link";
-// `firstname` varchar(191)  DEFAULT NULL,
-//     `lastname` varchar(191)  DEFAULT NULL,
-//     `username` varchar(191)  DEFAULT NULL,
-//     `email` varchar(191)  NOT NULL,
-//     `phone` varchar(255)  DEFAULT NULL,
-//     `credits` INT NOT NULL DEFAULT '0',
-//     `image` varchar(191)  DEFAULT NULL,
-//     `address` text DEFAULT NULL ,
-//     `role` varchar(191)  DEFAULT 'Member',
-//     `status` tinyint(1) NOT NULL DEFAULT '1',  -- Active ou pas!
-//     `email_verification` tinyint(1) NOT NULL DEFAULT '0',
 
 function MemberForm() {
   const {
@@ -46,7 +34,7 @@ function MemberForm() {
                 <input
                   type="text"
                   id="nom"
-                  className={`px-3 w-full h-[45px] border rounded-md bg-gray-50  border-gray-300 ${
+                  className={`px-3 w-full h-[45px] border rounded-md bg-white  border-gray-300 ${
                     errors.nom && "border-red-500 focus:outline-red-500"
                   }`}
                   placeholder="Entrez le nom "
@@ -66,7 +54,7 @@ function MemberForm() {
                 <input
                   type="text"
                   id="Prenom"
-                  className={`px-3 w-full h-[45px] border rounded-md bg-gray-50 border-gray-300 ${
+                  className={`px-3 w-full h-[45px] border rounded-md bg-white border-gray-300 ${
                     errors.prenom && "border-red-500 focus:outline-red-500"
                   }`}
                   placeholder="Entrez le prénom"
@@ -89,7 +77,7 @@ function MemberForm() {
                 <input
                   type="email"
                   id="email"
-                  className={`px-3 w-full h-[45px] border border-gray-300  rounded-md bg-gray-50 ${
+                  className={`px-3 w-full h-[45px] border border-gray-300  rounded-md bg-white ${
                     errors.email && "border-red-500 focus:outline-red-500"
                   }`}
                   placeholder="Entrez l'email"
@@ -139,7 +127,7 @@ function MemberForm() {
                     placeholder="03 000 000 00"
                     id="phoneNumber"
                     aria-describedby="helper-text-explanation"
-                    class={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
+                    class={`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 ${
                       errors.phoneNumber &&
                       "border-red-500 focus:outline-red-500"
                     }`}
@@ -168,7 +156,7 @@ function MemberForm() {
                     min={0}
                     name="credits"
                     id="credits"
-                    className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    className={`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
                       errors.address && "border-red-500 focus:outline-red-500"
                     }`}
                   />
@@ -187,33 +175,53 @@ function MemberForm() {
                   <select
                     {...register("role")}
                     defaultValue="User" // Set default value to "User"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option>Admin</option>
                     <option>User</option>
                   </select>
                 </div>
               </div>
+
+              {/* pack */}
+              <div className="w-full flex flex-col">
+                <label htmlFor="pack" className="pl-1.5 pb-3 font-medium">
+                  Pack
+                </label>
+                <div className="mt-2">
+                  <select
+                    {...register("pack")}
+                    placeholder="Pack"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  >
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
-            {/* address */}
-            <div className="mb-5 ">
-              <label htmlFor="address" className="pl-1.5 pb-3 font-medium">
-                Address
-              </label>
-              <textarea
-                {...register("address", {
-                  required: "Merci de remplir ce champ",
-                })}
-                id="address"
-                placeholder="Address"
-                className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                  errors.address && "border-red-500 focus:outline-red-500"
-                }`}
-              />
-              {errors.address && (
-                <InputError message={`${errors.address.message}`} />
-              )}
+            <div className="w-full flex flex-col md:flex-row gap-8 mb-8">
+              {/* adress */}
+              <div className="w-full">
+                <label htmlFor="address" className="pl-1.5 pb-3 font-medium">
+                  Address
+                </label>
+                <textarea
+                  {...register("address", {
+                    required: "Merci de remplir ce champ",
+                  })}
+                  id="address"
+                  placeholder="Address"
+                  className={`bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    errors.address && "border-red-500 focus:outline-red-500"
+                  }`}
+                />
+                {errors.address && (
+                  <InputError message={`${errors.address.message}`} />
+                )}
+              </div>
             </div>
           </div>
         </div>
